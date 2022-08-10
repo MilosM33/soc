@@ -4,4 +4,5 @@ export const User = {
   login: (data: any) => post("/auth/login", data),
   register: (data: any) => post("/auth/register", data),
   logout: () => post("/auth/logout"),
+  refresh: () => post("/api/auth/refresh"),
 };

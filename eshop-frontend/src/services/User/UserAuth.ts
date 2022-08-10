@@ -18,6 +18,11 @@ function Login(userdetails: any) {
       });
   });
 }
+
+function Refresh() {
+  return User.refresh();
+}
+
 function isLoggedIn() {
   const auth = localStorage.getItem("Auth");
 
@@ -48,4 +53,6 @@ export const UserAuth = {
   isLoggedIn: isLoggedIn,
   logout: Logout,
   register: Register,
+  refresh: Refresh,
+  saveToken: saveToken,
 };

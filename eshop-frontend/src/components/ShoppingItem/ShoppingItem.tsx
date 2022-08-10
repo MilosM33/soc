@@ -1,9 +1,17 @@
 import React from "react";
-import { AiOutlineHeart, AiOutlineShoppingCart } from "react-icons/ai";
+import {
+  AiFillHeart,
+  AiOutlineHeart,
+  AiOutlineShoppingCart,
+} from "react-icons/ai";
 
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { addItem } from "../../services/Cart/CartReducer";
+import {
+  addToWishlist,
+  removeFromWishlist,
+} from "../../services/Wishlist/WishlistReducer";
 
 export interface IShoppingItem {
   id: number;
@@ -12,10 +20,23 @@ export interface IShoppingItem {
   img_path: string;
   description: string;
   quantity?: number;
+  wishlist?: boolean;
 }
 
 export function ShoppingItem(props: IShoppingItem) {
   const dispatch = useDispatch();
+
+  function wishlistItem() {
+    const notify = () => toast.success("Product added to wishlist");
+    notify();
+    dispatch(addToWishlist(props.id));
+  }
+  function removeWishlistItem() {
+    const notify = () => toast.success("Product removed from wishlist");
+    notify();
+    dispatch(removeFromWishlist(props.id));
+  }
+
   function addToCart() {
     dispatch(
       addItem({
@@ -35,7 +56,11 @@ export function ShoppingItem(props: IShoppingItem) {
         />
         <div className="absolute w-fit h-fit bottom-0 left-1/2 -translate-x-1/2 text-slate-800 bg-white rounded-lg shadow-lg flex justify-center items-center translate-y-full duration-200 group-hover:-translate-y-full overflow-hidden">
           <div className="px-2 py-1 hover:bg-gray-300">
-            <AiOutlineHeart />
+            {props.wishlist ? (
+              <AiFillHeart onClick={removeWishlistItem}></AiFillHeart>
+            ) : (
+              <AiOutlineHeart onClick={wishlistItem} />
+            )}
           </div>
           <div className="px-2 py-1 hover:bg-gray-300">
             <AiOutlineShoppingCart onClick={addToCart} />

@@ -3,6 +3,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 
 import { AiFillFilter } from "react-icons/ai";
+import { useSelector } from "react-redux";
 import { IShoppingItem, ShoppingItem } from "../ShoppingItem/ShoppingItem";
 
 export interface IShoppingItems {
@@ -13,6 +14,10 @@ export interface IShoppingItems {
 
 export default function ShoppingSection(props: any) {
   const [items, setItems] = useState<IShoppingItems>();
+
+  const wishlistedItems: number[] = useSelector(
+    (state: any) => state.wishlist.wishlist
+  );
 
   function orderItems(e: any) {
     const value = e.target.value;
@@ -64,7 +69,11 @@ export default function ShoppingSection(props: any) {
       <div className="grid mb-10 px-5 grid-cols-1 gap-5 sm:grid-cols-3 md:px-0 lg:grid-cols-4 xl:grid-cols-5">
         {items &&
           items.data.map((item: IShoppingItem) => (
-            <ShoppingItem key={item.id} {...item} />
+            <ShoppingItem
+              key={item.id}
+              {...item}
+              wishlist={wishlistedItems.includes(item.id)}
+            />
           ))}
       </div>
       {items == null && (
