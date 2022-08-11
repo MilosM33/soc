@@ -2,14 +2,11 @@ import { User } from "../Api/User";
 
 function Login(userdetails: any) {
   return new Promise((resolve, reject) => {
-    if (isLoggedIn()) {
-      reject("Already logged in");
-    }
     User.login(userdetails)
       .then((res) => {
         if (res.status === 200) {
           saveToken(res.data);
-          resolve(res.data);
+          resolve(res);
         }
       })
       .catch((err) => {
@@ -20,9 +17,20 @@ function Login(userdetails: any) {
 }
 
 function Refresh() {
-  return User.refresh();
+  console.log("test");
+  User.refresh().then((res) => {
+    saveToken(res.data);
+  });
 }
-
+function Me() {
+  return User.me()
+    .then((res) => {
+      return res.data;
+    })
+    .catch((err) => {
+      return {};
+    });
+}
 function isLoggedIn() {
   const auth = localStorage.getItem("Auth");
 
@@ -30,6 +38,7 @@ function isLoggedIn() {
   const isExpired = Date.now() > JSON.parse(auth).expires_in;
   return !isExpired;
 }
+
 function saveToken(data: any) {
   localStorage.setItem(
     "Auth",
@@ -54,5 +63,5 @@ export const UserAuth = {
   logout: Logout,
   register: Register,
   refresh: Refresh,
-  saveToken: saveToken,
+  me: Me,
 };

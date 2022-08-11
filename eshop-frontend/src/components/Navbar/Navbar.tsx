@@ -4,12 +4,10 @@ import Belt from "./Belt/Belt";
 import ShoppingCart from "../ShoppingCart/ShoppingCart";
 import SearchComponent from "../SearchComponent/SearchComponent";
 import React from "react";
-import Backdrop from "../Backdrop/Backdrop";
-import { useState } from "react";
-import { AiOutlineClose } from "react-icons/ai";
-import InputText from "../InputText/InputText";
-import Auth from "../Auth/Auth";
+import { useSelector } from "react-redux";
+import Login from "../Auth/Login";
 export default function Navbar() {
+  const user = useSelector((state: any) => state.user);
   const navRoutes = [
     {
       name: "Home",
@@ -28,11 +26,7 @@ export default function Navbar() {
       route: "/contact",
     },
   ];
-
-  const [showLogin, setShowLogin] = useState(false);
-  function toggleLogin() {
-    setShowLogin(!showLogin);
-  }
+  console.log(user);
   return (
     <nav className="sticky top-0 left-0 flex flex-col md:flex-row justify-between items-center px-4 py-3 text-lg font-normal z-20 bg-white">
       <div className="flex justify-between w-full md:w-auto items-center gap-5">
@@ -49,12 +43,7 @@ export default function Navbar() {
         })}
       </ul>
       <ul className="flex items-center space-x-3 text-slate-800">
-        <li>
-          <button onClick={toggleLogin}>Login in</button>
-          <Backdrop isOpen={showLogin}></Backdrop>
-
-          {showLogin && <Auth onClose={toggleLogin}></Auth>}
-        </li>
+        <li>{user.loggedIn ? <h1>Vitaj {user.name}</h1> : <Login></Login>}</li>
         <li>
           <Belt></Belt>
         </li>

@@ -31,6 +31,8 @@ export function ShoppingItem(props: IShoppingItem) {
     notify();
     dispatch(addToWishlist(props.id));
   }
+
+  function previewItem() {}
   function removeWishlistItem() {
     const notify = () => toast.success("Product removed from wishlist");
     notify();
@@ -51,6 +53,7 @@ export function ShoppingItem(props: IShoppingItem) {
       <div className="relative overflow-hidden">
         <img
           src={require("./placeholder.png")}
+          onClick={previewItem}
           className="w-full object-cover aspect-square"
           alt=""
         />
