@@ -1,11 +1,16 @@
 import { User } from "../Api/User";
-
+import store from "../store";
+import { login } from "./UserReducer";
 function Login(userdetails: any) {
   return new Promise((resolve, reject) => {
     User.login(userdetails)
       .then((res) => {
         if (res.status === 200) {
           saveToken(res.data);
+
+          User.me().then((user: any) => {
+            store.dispatch(login(user.data));
+          });
           resolve(res);
         }
       })
@@ -17,7 +22,6 @@ function Login(userdetails: any) {
 }
 
 function Refresh() {
-  console.log("test");
   User.refresh().then((res) => {
     saveToken(res.data);
   });
