@@ -1,24 +1,26 @@
 import MainPage from "./MainPage";
+import ProductPreview from "./ProductPreview";
 
 const routes = [
   {
     path: "/",
-    component: MainPage,
+    element: MainPage,
     exact: true,
   },
   {
     path: "/cart",
-    component: MainPage,
+    element: MainPage,
     exact: true,
   },
   {
-    path: "/preview/:id",
-    component: MainPage,
+    path: "/product/:id",
+    element: ProductPreview,
     exact: true,
   },
   {
     path: "/account",
-    component: MainPage,
+    element: MainPage,
     exact: true,
   },
 ];
+export default routes;
