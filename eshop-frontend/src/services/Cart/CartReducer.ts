@@ -18,7 +18,7 @@ export const cartSlice = createSlice({
       const cartItems: ICartItem[] = [...state.items];
 
       let itemIndex: number = cartItems.findIndex(
-        (item) => item.item.id === newItem.id
+        (item) => item.item.name === newItem.name
       );
       let isInCart: boolean = itemIndex !== -1;
       if (isInCart) {
@@ -34,14 +34,14 @@ export const cartSlice = createSlice({
     },
     removeItem: (state, action) => {
       state.items = state.items.filter(
-        (item) => item.item.id !== action.payload
+        (item) => item.item.name !== action.payload
       );
     },
     setQuantity: (state, action) => {
       const { itemId, quantity } = action.payload;
       const cartItems: ICartItem[] = [...state.items];
       const itemIndex: number = cartItems.findIndex(
-        (item) => item.item.id === itemId
+        (item) => item.item.name === itemId
       );
       cartItems[itemIndex].quantity = quantity;
       state.items = cartItems;

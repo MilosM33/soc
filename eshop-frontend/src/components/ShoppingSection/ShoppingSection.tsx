@@ -1,9 +1,9 @@
-import axios from "axios";
 import React from "react";
 import { useEffect, useState } from "react";
 
 import { AiFillFilter } from "react-icons/ai";
 import { useSelector } from "react-redux";
+import { Product } from "../../services/Api/Product";
 import { IShoppingItem, ShoppingItem } from "../ShoppingItem/ShoppingItem";
 
 export interface IShoppingItems {
@@ -15,7 +15,7 @@ export interface IShoppingItems {
 export default function ShoppingSection(props: any) {
   const [items, setItems] = useState<IShoppingItems>();
 
-  const wishlistedItems: number[] = useSelector(
+  const wishlistedItems: string[] = useSelector(
     (state: any) => state.wishlist.wishlist
   );
 
@@ -37,7 +37,7 @@ export default function ShoppingSection(props: any) {
     setItems({ ...items, data: itemsData });
   }
   useEffect(() => {
-    axios.get("http://localhost:8000/api/products").then((res) => {
+    Product.getAll().then((res) => {
       setItems(res.data);
     });
   }, []);
@@ -68,11 +68,11 @@ export default function ShoppingSection(props: any) {
 
       <div className="grid mb-10 px-5 grid-cols-1 gap-5 sm:grid-cols-3 md:px-0 lg:grid-cols-4 xl:grid-cols-5">
         {items &&
-          items.data.map((item: IShoppingItem) => (
+          items.data.map((item: IShoppingItem, index: number) => (
             <ShoppingItem
-              key={item.id}
+              key={index}
               {...item}
-              wishlist={wishlistedItems.includes(item.id)}
+              wishlist={wishlistedItems.includes(item.name)}
             />
           ))}
       </div>

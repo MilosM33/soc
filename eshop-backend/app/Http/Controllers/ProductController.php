@@ -44,10 +44,16 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+
+        $products = Product::where('slug', $slug);
+        if ($products->count() > 0) {
+            return $products->first();
+        }
+        return response()->json(['error' => 'Product not found'], 404);
     }
+
 
     /**
      * Show the form for editing the specified resource.

@@ -14,7 +14,6 @@ import {
 } from "../../services/Wishlist/WishlistReducer";
 
 export interface IShoppingItem {
-  id: number;
   name: string;
   price: number;
   img_path: string;
@@ -28,13 +27,13 @@ export function ShoppingItem(props: IShoppingItem) {
   function wishlistItem() {
     const notify = () => toast.success("Product added to wishlist");
     notify();
-    dispatch(addToWishlist(props.id));
+    dispatch(addToWishlist(props.name));
   }
 
   function removeWishlistItem() {
     const notify = () => toast.success("Product removed from wishlist");
     notify();
-    dispatch(removeFromWishlist(props.id));
+    dispatch(removeFromWishlist(props.name));
   }
 
   function addToCart() {
@@ -49,7 +48,7 @@ export function ShoppingItem(props: IShoppingItem) {
   return (
     <div className="w-full group cursor-pointer">
       <div className="relative overflow-hidden">
-        <Link to="product/2">
+        <Link to="product/ea-voluptatum-quaerat-qui-fuga">
           <img
             src={require("./placeholder.png")}
             className="w-full object-cover aspect-square"

@@ -13,7 +13,7 @@ const routes = [
     exact: true,
   },
   {
-    path: "/product/:id",
+    path: "/product/:slug",
     element: ProductPreview,
     exact: true,
   },

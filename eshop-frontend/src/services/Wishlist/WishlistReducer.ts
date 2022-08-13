@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export interface WishState {
-  wishlist: number[];
+  wishlist: string[];
 }
 
 const items = JSON.parse(localStorage.getItem("wishlist") ?? "[]");
@@ -14,7 +14,7 @@ export const wishlistSlice = createSlice({
   initialState,
   reducers: {
     addToWishlist(state, action) {
-      const newItem: number = action.payload;
+      const newItem: string = action.payload;
       state.wishlist.push(newItem);
 
       localStorage.setItem("wishlist", JSON.stringify(state.wishlist));

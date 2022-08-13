@@ -26,7 +26,6 @@ export default function Navbar() {
       route: "/contact",
     },
   ];
-  console.log(user);
   return (
     <nav className="sticky top-0 left-0 flex flex-col md:flex-row justify-between items-center px-4 py-3 text-lg font-normal z-20 bg-white">
       <div className="flex justify-between w-full md:w-auto items-center gap-5">

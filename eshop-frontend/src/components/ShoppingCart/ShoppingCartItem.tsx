@@ -16,10 +16,10 @@ export default function ShoppingCartItem(props: ICartItem) {
   const dispatch = useDispatch();
 
   function handleRemove() {
-    dispatch(removeItem(item.id));
+    dispatch(removeItem(item.name));
   }
   function handleChange(value: any) {
-    dispatch(setQuantity({ itemId: item.id, quantity: value }));
+    dispatch(setQuantity({ itemId: item.name, quantity: value }));
   }
   return (
     <article className="flex gap-4">

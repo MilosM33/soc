@@ -2,7 +2,6 @@ import React from "react";
 import { useState } from "react";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { BiExit } from "react-icons/bi";
-import { IShoppingItem } from "../ShoppingItem/ShoppingItem";
 import EmptyShoppingCart from "./EmptyShoppingCart";
 import ShoppingCartItem, { ICartItem } from "./ShoppingCartItem";
 import ShoppingCartTotal from "./ShoppingCartTotal";
@@ -47,7 +46,7 @@ export default function ShoppingCart() {
               {cart.items.length === 0 && <EmptyShoppingCart />}
               {cart.items.map((item: ICartItem) => (
                 <ShoppingCartItem
-                  key={item.item.id}
+                  key={item.item.name}
                   {...item}
                 ></ShoppingCartItem>
               ))}
