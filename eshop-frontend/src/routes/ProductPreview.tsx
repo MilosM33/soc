@@ -2,37 +2,28 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { AiOutlineShareAlt } from "react-icons/ai";
 import Button from "../components/Button/Button";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import Layout from "../components/Layout/Layout";
 import Rating from "../components/Rating/Rating";
 import ValueIncrement from "../components/ValueIncrement/ValueIncrement";
 import VariantPicker from "../components/VariantPicker/VariantPicker";
-import Review from "../components/Review/Review";
+import Review from "../components/Review/ReviewComponent";
 import { Product } from "../services/Api/Product";
 import { IShoppingItem } from "../components/ShoppingItem/ShoppingItem";
 import { useDispatch } from "react-redux";
 import { addItem, setQuantity } from "../services/Cart/CartReducer";
 import { toast } from "react-toastify";
+import ReviewSection from "../components/ReviewSection/ReviewSection";
 
 export default function ProductPreview(props: any) {
-  const [count, setCount] = useState(1);
-  const [price, setPrice] = useState(0);
-  const dispatch = useDispatch();
-  const [product, setProduct] = useState<IShoppingItem>({
-    name: "",
-    img_path: "",
-    price: 0,
-    description: "",
-  });
-  const { slug } = useParams();
-  useEffect(() => {
-    Product.get(slug || "").then((res) => {
-      console.log(res.data);
-      setProduct(res.data);
-      setPrice(res.data.price);
-    });
-  }, []);
+  const location = useLocation();
 
+  const [product, setProduct] = useState<IShoppingItem>(
+    location.state as IShoppingItem
+  );
+  const [count, setCount] = useState(1);
+  const [price, setPrice] = useState(product.price);
+  const dispatch = useDispatch();
   function AddToCart() {
     dispatch(addItem(product));
     dispatch(
@@ -76,17 +67,7 @@ export default function ProductPreview(props: any) {
       </section>
 
       <div className="px-4 mt-16">
-        <h2 className="text-2xl my-8">Reviews for this product ( 80 ) </h2>
-        <button> Add review</button>
-        <div
-          className="flex flex-col gap-9 md:w-3/4 lg:w-1/2
-         mx-auto"
-        >
-          <Review></Review>
-          <Review></Review>
-          <Review></Review>
-          <Review></Review>
-        </div>
+        <ReviewSection slug={product.slug}></ReviewSection>
 
         <div>
           <h2 className="text-2xl my-8">Related products</h2>

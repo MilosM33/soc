@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ReviewController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -31,3 +32,4 @@ Route::group(['prefix' => 'auth'], function () {
 });
 
 Route::apiResource('/products', ProductController::class)->except(['create', 'edit']);
+Route::apiResource('products.reviews', ReviewController::class);

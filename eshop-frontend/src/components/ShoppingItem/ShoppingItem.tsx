@@ -4,8 +4,8 @@ import {
   AiOutlineHeart,
   AiOutlineShoppingCart,
 } from "react-icons/ai";
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { addItem } from "../../services/Cart/CartReducer";
 import {
@@ -16,6 +16,7 @@ import {
 export interface IShoppingItem {
   name: string;
   price: number;
+  slug?: string;
   img_path: string;
   description: string;
   quantity?: number;
@@ -24,6 +25,15 @@ export interface IShoppingItem {
 
 export function ShoppingItem(props: IShoppingItem) {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  function previewProduct() {
+    navigate(`/product/${props.slug}`, {
+      state: {
+        ...props,
+      },
+    });
+  }
+
   function wishlistItem() {
     const notify = () => toast.success("Product added to wishlist");
     notify();
@@ -48,13 +58,12 @@ export function ShoppingItem(props: IShoppingItem) {
   return (
     <div className="w-full group cursor-pointer">
       <div className="relative overflow-hidden">
-        <Link to="product/ea-voluptatum-quaerat-qui-fuga">
-          <img
-            src={require("./placeholder.png")}
-            className="w-full object-cover aspect-square"
-            alt=""
-          />
-        </Link>
+        <img
+          src={require("./placeholder.png")}
+          className="w-full object-cover aspect-square"
+          alt=""
+          onClick={previewProduct}
+        />
         <div className="absolute w-fit h-fit bottom-0 left-1/2 -translate-x-1/2 text-slate-800 bg-white rounded-lg shadow-lg flex justify-center items-center translate-y-full duration-200 group-hover:-translate-y-full overflow-hidden">
           <div className="px-2 py-1 hover:bg-gray-300">
             {props.wishlist ? (
