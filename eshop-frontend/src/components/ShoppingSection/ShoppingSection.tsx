@@ -5,6 +5,7 @@ import { AiFillFilter } from "react-icons/ai";
 import { useSelector } from "react-redux";
 import { Product } from "../../services/Api/Product";
 import { IShoppingItem, ShoppingItem } from "../ShoppingItem/ShoppingItem";
+import Skeleton from "../Skeleton/Skeleton";
 
 export interface IShoppingItems {
   per_page: number;
@@ -14,6 +15,7 @@ export interface IShoppingItems {
 
 export default function ShoppingSection(props: any) {
   const [items, setItems] = useState<IShoppingItems>();
+  const [loading, setLoading] = useState(true);
 
   const wishlistedItems: string[] = useSelector(
     (state: any) => state.wishlist.wishlist
@@ -39,6 +41,7 @@ export default function ShoppingSection(props: any) {
   useEffect(() => {
     Product.getAll().then((res) => {
       setItems(res.data);
+      setLoading(false);
     });
   }, []);
   return (
@@ -67,14 +70,23 @@ export default function ShoppingSection(props: any) {
       </div>
 
       <div className="grid mb-10 px-5 grid-cols-1 gap-5 sm:grid-cols-3 md:px-0 lg:grid-cols-4 xl:grid-cols-5">
-        {items &&
-          items.data.map((item: IShoppingItem, index: number) => (
-            <ShoppingItem
-              key={index}
-              {...item}
-              wishlist={wishlistedItems.includes(item.name)}
-            />
-          ))}
+        {loading
+          ? Array(10)
+              .fill(0)
+              .map((_, i) => (
+                <section>
+                  <Skeleton></Skeleton>
+                  <Skeleton type="text"></Skeleton>
+                </section>
+              ))
+          : items &&
+            items.data.map((item: IShoppingItem, index: number) => (
+              <ShoppingItem
+                key={index}
+                {...item}
+                wishlist={wishlistedItems.includes(item.name)}
+              />
+            ))}
       </div>
       {items == null && (
         <h2 className="text-2xl text-center my-12">

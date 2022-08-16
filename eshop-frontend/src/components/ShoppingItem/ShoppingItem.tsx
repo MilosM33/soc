@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   AiFillHeart,
   AiOutlineHeart,
@@ -55,6 +55,7 @@ export function ShoppingItem(props: IShoppingItem) {
     const notify = () => toast.success("Product added to shopping cart!");
     notify();
   }
+
   return (
     <div className="w-full group cursor-pointer">
       <div className="relative overflow-hidden">

@@ -6,6 +6,7 @@ module.exports = {
       animation: {
         roadMove: "roadmove 2s linear infinite",
         cartRotate: "cartrotate 2s linear infinite",
+        skeleton: "skeleton 7s linear infinite",
       },
       keyframes: {
         roadmove: {
@@ -16,6 +17,10 @@ module.exports = {
           "0%": { transform: "translateX(5px) rotate(-30deg)" },
           "50%": { transform: "rotate(0deg)" },
           "100%": { transform: "translateX(0px) rotate(-30deg)" },
+        },
+        skeleton: {
+          "0%": { backgroundPosition: "-100vw 0%" },
+          "100%": { backgroundPosition: "150% 0%" },
         },
       },
     },
