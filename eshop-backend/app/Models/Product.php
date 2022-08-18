@@ -21,4 +21,9 @@ class Product extends Model
     {
         return $this->hasMany(Review::class);
     }
+
+    public function attributes()
+    {
+        return $this->belongsToMany(ProductAttribute::class);
+    }
 }
