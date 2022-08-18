@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class ProductAttribute extends Model
 {
     use HasFactory;
-    protected $table = 'productAttributes';
+    protected $table = 'product_attribute';
     public $timestamps = false;
 
     public function attribute_type()

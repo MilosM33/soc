@@ -13,13 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('product_attribute', function (Blueprint $table) {
+        Schema::create('variant_attributes', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('attribute_type_id');
-            $table->unsignedBigInteger('attribute_value_id');
-
-            $table->foreign('attribute_type_id')->references('id')->on('attribute_types');
-            $table->foreign('attribute_value_id')->references('id')->on('attribute_values');
+            $table->bigInteger('variant_id')->unsigned();
+            $table->bigInteger('attribute_id')->unsigned();
         });
     }
 
@@ -30,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product_attributes');
+        Schema::dropIfExists('variant_attributes');
     }
 };
