@@ -1,4 +1,4 @@
-import Link from "../Link/Link";
+import Link from "../Utils/Link/Link";
 import Hamburger from "./Hamburger/Hamburger";
 import Belt from "./Belt/Belt";
 import ShoppingCart from "../ShoppingCart/ShoppingCart";

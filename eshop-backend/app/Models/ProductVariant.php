@@ -20,4 +20,12 @@ class ProductVariant extends Model
     {
         return $this->belongsToMany(ProductAttribute::class, 'variant_attributes', 'variant_id', 'attribute_id');
     }
+    public function images()
+    {
+        return $this->morphMany(ProductImage::class, 'imageable');
+    }
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
 }

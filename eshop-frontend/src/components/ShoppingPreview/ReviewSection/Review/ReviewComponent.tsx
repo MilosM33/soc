@@ -1,6 +1,6 @@
 import React from "react";
 import { AiFillDelete, AiFillEdit } from "react-icons/ai";
-import Rating from "../Rating/Rating";
+import Rating from "../../../Utils/Rating/Rating";
 
 export interface IReviewProps {
   name: string;

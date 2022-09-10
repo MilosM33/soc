@@ -1,6 +1,6 @@
 import React from "react";
 import { FaFacebookF, FaInstagram } from "react-icons/fa";
-import InputText from "../InputText/InputText";
+import InputText from "../Utils/InputText/InputText";
 import FooterItem from "./FooterItem";
 
 export default function Footer() {

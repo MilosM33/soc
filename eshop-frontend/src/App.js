@@ -5,7 +5,7 @@ import { injectStyle } from "react-toastify/dist/inject-style";
 import { Provider } from "react-redux";
 import Store from "./services/store";
 import { useEffect } from "react";
-import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
+import ScrollToTop from "./hooks/ScrollToTop";
 import routes from "./routes/Routes";
 function App() {
   useEffect(() => {

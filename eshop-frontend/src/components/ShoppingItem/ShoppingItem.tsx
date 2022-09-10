@@ -60,7 +60,7 @@ export function ShoppingItem(props: IShoppingItem) {
     <div className="w-full group cursor-pointer">
       <div className="relative overflow-hidden">
         <img
-          src={require("./placeholder.png")}
+          src={props.img_path}
           className="w-full object-cover aspect-square"
           alt=""
           onClick={previewProduct}

@@ -16,6 +16,10 @@ class Product extends Model
     {
         return $this->belongsToMany((Category::class));
     }
+    public function variants()
+    {
+        return $this->hasMany(ProductVariant::class, 'product_id', 'id');
+    }
 
     public function reviews()
     {
@@ -25,5 +29,10 @@ class Product extends Model
     public function attributes()
     {
         return $this->belongsToMany(ProductAttribute::class);
+    }
+
+    public function images()
+    {
+        return $this->morphMany(ProductImage::class, 'imageable');
     }
 }

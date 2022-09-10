@@ -1,11 +1,11 @@
 import React from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 
 import { AiFillFilter } from "react-icons/ai";
 import { useSelector } from "react-redux";
-import { Product } from "../../services/Api/Product";
-import { IShoppingItem, ShoppingItem } from "../ShoppingItem/ShoppingItem";
-import Skeleton from "../Skeleton/Skeleton";
+import { Product } from "../../../services/Api/Product";
+import { IShoppingItem, ShoppingItem } from "../../ShoppingItem/ShoppingItem";
+import Skeleton from "../../Utils/Skeleton/Skeleton";
 
 export interface IShoppingItems {
   per_page: number;

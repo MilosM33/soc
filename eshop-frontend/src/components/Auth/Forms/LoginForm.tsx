@@ -1,16 +1,20 @@
-import Button from "../../Button/Button";
-import InputText from "../../InputText/InputText";
+import Button from "../../Utils/Button/Button";
+import InputText from "../../Utils/InputText/InputText";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { AiOutlineClose } from "react-icons/ai";
 import React, { useState } from "react";
 import { UserAuth } from "../../../services/User/UserAuth";
 import { useDispatch } from "react-redux";
+import { login } from "../../../services/User/UserReducer";
 export default function LoginForm(props: any) {
+  const dispatch = useDispatch();
+
   function Login(values: any) {
     UserAuth.login(values).then((res: any) => {
       if (res.status === 200) {
         props.onClose();
+        dispatch(login(res.data));
       }
     });
   }
@@ -26,7 +30,7 @@ export default function LoginForm(props: any) {
       .required("Required"),
   });
   return (
-    <section className="fixed p-8 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white w-96 z-20">
+    <section className="fixed p-8 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white w-96 z-30">
       <AiOutlineClose
         className="ml-auto cursor-pointer"
         onClick={props.onClose}

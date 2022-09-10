@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('herocarousel', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('slug', 100)->unique();
-            $table->longText('description');
-            $table->float('price');
+            $table->string('title');
+            $table->string('description');
+            $table->string('image');
+            $table->timestamps();
         });
     }
 
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('herocarousel');
     }
 };

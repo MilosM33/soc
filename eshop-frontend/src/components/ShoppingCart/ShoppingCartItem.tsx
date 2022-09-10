@@ -1,7 +1,7 @@
 import React from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { IShoppingItem } from "../ShoppingItem/ShoppingItem";
-import ValueIncrement from "../ValueIncrement/ValueIncrement";
+import ValueIncrement from "../ShoppingPreview/ValueIncrement/ValueIncrement";
 import { useDispatch } from "react-redux";
 
 import { setQuantity, removeItem } from "../../services/Cart/CartReducer";

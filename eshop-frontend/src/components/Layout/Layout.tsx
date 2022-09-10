@@ -1,5 +1,5 @@
 import React from "react";
-import Message from "../Message/Message";
+import Message from "../Utils/Message/Message";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 import { ToastContainer } from "react-toastify";

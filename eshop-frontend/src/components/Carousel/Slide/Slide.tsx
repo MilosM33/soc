@@ -8,23 +8,8 @@ export interface ISlideProps {
 }
 
 export function Slide(props: ISlideProps) {
-  function handleDirection() {
-    if (props.direction === "left") {
-      return "-translate-x-full opacity-0";
-    } else if (props.direction === "right") {
-      return "translate-x-full opacity-0";
-    } else if (props.direction === "current") {
-      return "translate-x-0";
-    } else if (props.direction === "next") {
-      return "translate-x-full";
-    } else if (props.direction === "prev") {
-      return "-translate-x-full";
-    }
-  }
   return (
-    <div
-      className={`w-full h-full absolute top-0 ${handleDirection()} duration-1000`}
-    >
+    <div className={`w-full h-full duration-1000`}>
       <img src={props.image} alt="" className="w-full h-full object-cover" />
 
       <div className="absolute top-1/2 -translate-y-1/2 px-4 md:px-48">

@@ -7,7 +7,7 @@ import ShoppingCartItem, { ICartItem } from "./ShoppingCartItem";
 import ShoppingCartTotal from "./ShoppingCartTotal";
 
 import { useSelector } from "react-redux";
-import Backdrop from "../Backdrop/Backdrop";
+import Backdrop from "../Utils/Backdrop/Backdrop";
 
 export default function ShoppingCart() {
   const [isOpen, setIsOpen] = useState(false);
@@ -36,14 +36,16 @@ export default function ShoppingCart() {
           <div
             className={`px-6 md:px-12 py-8 fixed top-0 ${
               isOpen ? "right-0" : "translate-x-full md:-right-1/2"
-            } w-screen md:w-1/2 xl:w-1/4 h-full bg-white z-10 transition-all duration-500 ease-in-out`}
+            } w-screen md:w-1/2 xl:w-1/4 h-full bg-white z-30 transition-all duration-500 ease-in-out`}
           >
             <div className="flex justify-between items-center">
               <h1>Cart</h1>
               <BiExit className="cursor-pointer" onClick={toggleCart}></BiExit>
             </div>
             <div className="flex flex-col my-16 gap-2 h-1/2 overflow-auto scrollbar-thin scrollbar-thumb-slate-800 pr-5">
-              {cart.items.length === 0 && <EmptyShoppingCart />}
+              {cart.items.length === 0 && (
+                <EmptyShoppingCart toggle={toggleCart} />
+              )}
               {cart.items.map((item: ICartItem) => (
                 <ShoppingCartItem
                   key={item.item.name}
