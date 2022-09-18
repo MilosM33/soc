@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState } from "react";
 
 import { AiFillFilter } from "react-icons/ai";
 import { useSelector } from "react-redux";
@@ -41,6 +41,7 @@ export default function ShoppingSection(props: any) {
   useEffect(() => {
     Product.getAll().then((res) => {
       setItems(res.data);
+      console.log(res.data);
       setLoading(false);
     });
   }, []);

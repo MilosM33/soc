@@ -13,11 +13,15 @@ import {
   removeFromWishlist,
 } from "../../services/Wishlist/WishlistReducer";
 
+export interface IImage {
+  id: number;
+  image: string;
+}
 export interface IShoppingItem {
   name: string;
   price: number;
   slug?: string;
-  img_path: string;
+  images: IImage[];
   description: string;
   quantity?: number;
   wishlist?: boolean;
@@ -60,7 +64,7 @@ export function ShoppingItem(props: IShoppingItem) {
     <div className="w-full group cursor-pointer">
       <div className="relative overflow-hidden">
         <img
-          src={props.img_path}
+          src={props.images[0]?.image ?? "https://via.placeholder.com/150"}
           className="w-full object-cover aspect-square"
           alt=""
           onClick={previewProduct}

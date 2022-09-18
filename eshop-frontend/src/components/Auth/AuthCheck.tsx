@@ -15,7 +15,7 @@ export default function AuthCheck(props: any) {
       onClick={() => {
         if (loggedIn) {
           props.onClick?.();
-        } else {
+        } else if (!isOpen) {
           setIsOpen(true);
         }
       }}

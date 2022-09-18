@@ -10,6 +10,7 @@ class ProductAttribute extends Model
     use HasFactory;
     protected $table = 'product_attribute';
     public $timestamps = false;
+    protected $hidden = ['attribute_type_id', 'attribute_value_id', 'product_id', 'pivot'];
 
     public function attribute_type()
     {

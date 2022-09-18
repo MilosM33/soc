@@ -5,30 +5,22 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
-class ProductController extends Controller
+class VariantController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($slug)
     {
-        return Product::with('categories', 'variants', 'reviews', 'attributes', 'images')->paginate();
-    }
+        $product =  Product::where('slug', $slug)->first();
 
-    public function info($slug)
-    {
-        return response("Hello World");
-    }
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        if ($product) {
+            return $product->variants;
+        } else {
+            return response()->json(['message' => 'Product not found'], 404);
+        }
     }
 
     /**
@@ -48,27 +40,11 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($slug)
-    {
-
-        $products = Product::where('slug', $slug);
-        if ($products->count() > 0) {
-            return $products->first();
-        }
-        return response()->json(['error' => 'Product not found'], 404);
-    }
-
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function show($id)
     {
         //
     }
+
 
     /**
      * Update the specified resource in storage.

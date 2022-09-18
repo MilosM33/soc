@@ -5,22 +5,43 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
-class ProductController extends Controller
+class AttributeController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($slug)
     {
-        return Product::with('categories', 'variants', 'reviews', 'attributes', 'images')->paginate();
+        $product = Product::where('slug', $slug)->first();
+        if ($product) {
+            $attributes = $product->attributes;
+
+            // join attribute_type and attribute_value
+
+            $attributes = $attributes->map(function ($attribute) {
+                $data = [
+                    'id' => $attribute->id,
+                    'type' => [
+                        'id' => $attribute->attribute_type->id,
+                        'name' => $attribute->attribute_type->name,
+                        'description' => $attribute->attribute_type->description,
+                    ],
+                    'value' => [
+                        'id' => $attribute->attribute_value->id,
+                        'value' => $attribute->attribute_value->value,
+                        'description' => $attribute->attribute_value->description,
+                    ],
+                ];
+                return $data;
+            });
+            return $attributes;
+        } else {
+            return response()->json(['message' => 'Product not found'], 404);
+        }
     }
 
-    public function info($slug)
-    {
-        return response("Hello World");
-    }
     /**
      * Show the form for creating a new resource.
      *
@@ -48,16 +69,10 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($slug)
+    public function show($id)
     {
-
-        $products = Product::where('slug', $slug);
-        if ($products->count() > 0) {
-            return $products->first();
-        }
-        return response()->json(['error' => 'Product not found'], 404);
+        //
     }
-
 
     /**
      * Show the form for editing the specified resource.

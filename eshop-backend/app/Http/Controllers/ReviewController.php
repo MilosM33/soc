@@ -35,12 +35,14 @@ class ReviewController extends Controller
         if ($review->count() == 0) {
             return response()->json(['error' => 'Product has no reviews'], 404);
         }
-
+        // ak je uživatel prihlaseny
         if (auth() && auth()->user() !== null) {
             $userId = auth()->user()->id;
             $reviewIndex = $review->search(function ($item) use ($userId) {
                 return $item->id == $userId;
             });
+
+            // ak je autorom recenzie môže ju upraviť
             if ($reviewIndex !== false) {
                 $review[$reviewIndex]->is_Author = true;
             }

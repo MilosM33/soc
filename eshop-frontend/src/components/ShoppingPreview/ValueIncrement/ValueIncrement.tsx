@@ -18,7 +18,7 @@ export default function ValueIncrement(props: ValueInterface) {
     } else return 1;
   }
   return (
-    <div className="flex items-center">
+    <div className="flex items-center select-none">
       <AiOutlineMinus
         onClick={() => handleChange(props.value - 1)}
         className="cursor-pointer"

@@ -46,5 +46,8 @@ class DatabaseSeeder extends Seeder
 
 
         DB::insert("INSERT INTO `variant_attributes` (`id`,`variant_id`,`attribute_id`) VALUES (null,1,1),(null,2,1),(null,3,1),(null,4,2),(null,5,2),(null,6,2)");
+
+
+        DB::insert("INSERT INTO `product_product_attribute` (`id`,`product_id`,`attribute_id`) VALUES (null,1,1),(null,1,2),(null,1,3),(null,2,4),(null,2,5),(null,2,6)");
     }
 }

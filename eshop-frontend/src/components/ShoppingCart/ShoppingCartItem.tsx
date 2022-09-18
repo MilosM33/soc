@@ -23,11 +23,11 @@ export default function ShoppingCartItem(props: ICartItem) {
   }
   return (
     <article className="flex gap-4">
-      <img src={item.img_path} className="w-16" alt="" />
+      <img src={item.images[0].image} className="w-16" alt="" />
       <section className="flex-grow">
         <div className="flex justify-between">
           <h1>{item.name}</h1>
-          <AiOutlineClose onClick={handleRemove} />
+          <AiOutlineClose onClick={handleRemove} className="cursor-pointer" />
         </div>
         <section className="flex justify-between">
           <ValueIncrement

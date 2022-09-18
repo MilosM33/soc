@@ -10,7 +10,7 @@ class ProductVariant extends Model
     use HasFactory;
     protected $table = 'product_variants';
     public $timestamps = false;
-
+    protected $hidden = ['product_id', 'id'];
 
     public function product()
     {
@@ -27,5 +27,10 @@ class ProductVariant extends Model
     public function reviews()
     {
         return $this->hasMany(Review::class);
+    }
+
+    public function options()
+    {
+        return $this->belongsToMany(ProductOptions::class, 'products_variants_product_options', 'variant_id', 'option_id');
     }
 }
