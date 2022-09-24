@@ -10,6 +10,7 @@ class ProductImage extends Model
     use HasFactory;
     protected $table = 'product_images';
     public $timestamps = false;
+    protected $hidden = ['imageable_type', 'imageable_id'];
 
     public function imageable()
     {

@@ -21,9 +21,8 @@ export interface IShoppingItem {
   name: string;
   price: number;
   slug?: string;
-  images: IImage[];
+  images?: IImage[];
   description: string;
-  quantity?: number;
   wishlist?: boolean;
 }
 
@@ -64,7 +63,11 @@ export function ShoppingItem(props: IShoppingItem) {
     <div className="w-full group cursor-pointer">
       <div className="relative overflow-hidden">
         <img
-          src={props.images[0]?.image ?? "https://via.placeholder.com/150"}
+          src={
+            props.images && props.images.length > 0
+              ? props.images[0].image
+              : "https://via.placeholder.com/150"
+          }
           className="w-full object-cover aspect-square"
           alt=""
           onClick={previewProduct}

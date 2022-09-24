@@ -1,28 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { Review } from "../../../services/Api/Review";
+import React from "react";
 import AuthCheck from "../../Auth/AuthCheck";
-import ReviewComponent, { IReviewProps } from "./Review/ReviewComponent";
+import ReviewComponent from "./Review/ReviewComponent";
 import Skeleton from "../../Utils/Skeleton/Skeleton";
 export default function ReviewSection(props: any) {
-  const [reviews, setReviews] = useState<IReviewProps[]>([]);
-  const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    Review.getAll(props.slug)
-      .then((res) => {
-        setReviews(res.data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        setLoading(false);
-      });
-  }, []);
-
   return (
     <div>
       <h2 className="text-2xl my-8">
-        Reviews for this product ( {reviews.length} ){" "}
+        Reviews for this product ( {props.reviews.length} ){" "}
       </h2>
-
+      <span>
+      <input type="checkbox" name="" id="" />
+      Review only for this variant
+      </span>
       <AuthCheck>
         <button> Add review</button>
       </AuthCheck>
@@ -30,7 +19,7 @@ export default function ReviewSection(props: any) {
         className="flex flex-col gap-9 md:w-3/4 lg:w-1/2
          mx-auto"
       >
-        {loading
+        {props.loading
           ? Array(10)
               .fill(0)
               .map((_) => (
@@ -40,10 +29,10 @@ export default function ReviewSection(props: any) {
                   <Skeleton type="title"></Skeleton>
                 </section>
               ))
-          : reviews.map((review, index) => (
+          : props.reviews.map((review: any, index: number) => (
               <ReviewComponent key={index} {...review}></ReviewComponent>
             ))}
-        {!loading && reviews.length === 0 && (
+        {!props.loading && props.reviews.length === 0 && (
           <div className="text-center">
             <h3 className="text-2xl">No reviews yet</h3>
           </div>

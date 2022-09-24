@@ -17,7 +17,8 @@ class ReviewFactory extends Factory
     public function definition()
     {
         return [
-            'product_id' => $this->faker->numberBetween(1, 10),
+            'reviewable_id' => $this->faker->numberBetween(1, 10),
+            'reviewable_type' => $this->faker->randomElement(['App\Models\Product', 'App\Models\ProductVariant']),
             'user_id' => $this->faker->numberBetween(1, 10),
             'rating' => $this->faker->numberBetween(1, 5),
             'comment' => $this->faker->text,

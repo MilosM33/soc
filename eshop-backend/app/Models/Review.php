@@ -9,6 +9,7 @@ class Review extends Model
 {
     use HasFactory;
     protected $table = 'reviews';
+    protected $hidden = ['reviewable_type', 'reviewable_id'];
 
     public function product()
     {
@@ -17,5 +18,10 @@ class Review extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function reviewable()
+    {
+        return $this->morphTo();
     }
 }

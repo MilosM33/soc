@@ -7,30 +7,43 @@ import Store from "./services/store";
 import { useEffect } from "react";
 import ScrollToTop from "./hooks/ScrollToTop";
 import routes from "./routes/Routes";
+import PageNotFound from "./routes/ErrorPage/PageNotFound";
+
+import {
+  QueryClient,
+  QueryClientProvider,
+  useQuery,
+} from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+
 function App() {
   useEffect(() => {
     injectStyle();
   });
-
+  const queryClient = new QueryClient();
   return (
     <div className="App">
-      <Provider store={Store}>
-        <BrowserRouter>
-          <ScrollToTop>
-            <Routes>
-              {routes.map((route, index) => {
-                return (
-                  <Route
-                    key={index}
-                    element={<route.element />}
-                    path={route.path}
-                  />
-                );
-              })}
-            </Routes>
-          </ScrollToTop>
-        </BrowserRouter>
-      </Provider>
+      <QueryClientProvider client={queryClient}>
+        <ReactQueryDevtools initialIsOpen={false} />
+        <Provider store={Store}>
+          <BrowserRouter>
+            <ScrollToTop>
+              <Routes>
+                {routes.map((route, index) => {
+                  return (
+                    <Route
+                      key={index}
+                      element={<route.element />}
+                      path={route.path}
+                    />
+                  );
+                })}
+                <Route path="*" element={<PageNotFound />} />
+              </Routes>
+            </ScrollToTop>
+          </BrowserRouter>
+        </Provider>
+      </QueryClientProvider>
     </div>
   );
 }

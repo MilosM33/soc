@@ -46,11 +46,8 @@ export default function ShoppingCart() {
               {cart.items.length === 0 && (
                 <EmptyShoppingCart toggle={toggleCart} />
               )}
-              {cart.items.map((item: ICartItem) => (
-                <ShoppingCartItem
-                  key={item.item.name}
-                  {...item}
-                ></ShoppingCartItem>
+              {cart.items.map((item: ICartItem, _: number) => (
+                <ShoppingCartItem key={_} {...item}></ShoppingCartItem>
               ))}
             </div>
             {cart.items.length !== 0 && (

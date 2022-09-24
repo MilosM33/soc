@@ -6,6 +6,12 @@ import { useSelector } from "react-redux";
 import { Product } from "../../../services/Api/Product";
 import { IShoppingItem, ShoppingItem } from "../../ShoppingItem/ShoppingItem";
 import Skeleton from "../../Utils/Skeleton/Skeleton";
+import { InView, useInView } from "react-intersection-observer";
+import {
+  useInfiniteQuery,
+  QueryClient,
+  QueryClientProvider,
+} from "@tanstack/react-query";
 
 export interface IShoppingItems {
   per_page: number;
@@ -15,36 +21,30 @@ export interface IShoppingItems {
 
 export default function ShoppingSection(props: any) {
   const [items, setItems] = useState<IShoppingItems>();
-  const [loading, setLoading] = useState(true);
 
   const wishlistedItems: string[] = useSelector(
     (state: any) => state.wishlist.wishlist
   );
 
-  function orderItems(e: any) {
-    const value = e.target.value;
-    if (items?.data === undefined) return;
-
-    let itemsData = [...items.data];
-    if (value === "name") {
-      itemsData = itemsData.sort((a: any, b: any) =>
-        a.name > b.name ? 1 : -1
-      );
-    } else if (value === "price") {
-      itemsData = itemsData.sort((a: any, b: any) =>
-        a.price > b.price ? 1 : -1
-      );
+  const { status, data, error, isFetching, fetchNextPage } = useInfiniteQuery(
+    ["products"],
+    async ({ pageParam = 0 }) => {
+      const res = await Product.getByPage(pageParam);
+      return res.data;
+    },
+    {
+      getPreviousPageParam: (firstPage) =>
+        firstPage.current_page - 1 > 0 ? firstPage.current_page - 1 : undefined,
+      getNextPageParam: (lastPage) => lastPage.current_page + 1 ?? undefined,
     }
-
-    setItems({ ...items, data: itemsData });
-  }
+  );
+  const { ref, inView } = useInView();
   useEffect(() => {
-    Product.getAll().then((res) => {
-      setItems(res.data);
-      console.log(res.data);
-      setLoading(false);
-    });
-  }, []);
+    if (inView) {
+      console.log("fetching next page");
+      fetchNextPage();
+    }
+  }, [inView]);
   return (
     <div>
       <div className="text-center">
@@ -63,15 +63,18 @@ export default function ShoppingSection(props: any) {
             <AiFillFilter className="inline" />
             Filters
           </div>
-          <select name="" id="" onInput={orderItems}>
+          <select name="" id="">
             <option value="price">Price</option>
             <option value="name">Name</option>
           </select>
         </div>
       </div>
 
-      <div className="grid mb-10 px-5 grid-cols-1 gap-5 sm:grid-cols-3 md:px-0 lg:grid-cols-4 xl:grid-cols-5">
-        {loading
+      <div
+        className="grid mb-10 px-5 grid-cols-1 gap-5 sm:grid-cols-3 md:px-0 lg:grid-cols-4 xl:grid-cols-5"
+        ref={ref}
+      >
+        {isFetching
           ? Array(10)
               .fill(0)
               .map((_, i) => (
@@ -80,20 +83,24 @@ export default function ShoppingSection(props: any) {
                   <Skeleton type="text"></Skeleton>
                 </section>
               ))
-          : items &&
-            items.data.map((item: IShoppingItem, index: number) => (
-              <ShoppingItem
-                key={index}
-                {...item}
-                wishlist={wishlistedItems.includes(item.name)}
-              />
-            ))}
+          : data &&
+            data.pages.map((page: any, _: number) =>
+              page.data.map((item: IShoppingItem, index: number) => (
+                <ShoppingItem
+                  key={index * (_ + 1)}
+                  {...item}
+                  wishlist={wishlistedItems.includes(item.name)}
+                />
+              ))
+            )}
       </div>
-      {items == null && (
+      {error != null && (
         <h2 className="text-2xl text-center my-12">
           We didn't find any product which matches your filter.
         </h2>
       )}
+
+      <div ref={ref} className="w-full h-20 "></div>
     </div>
   );
 }

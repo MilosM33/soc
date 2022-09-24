@@ -20,4 +20,22 @@ class ProductAttribute extends Model
     {
         return $this->belongsTo(AttributeValue::class);
     }
+
+    public function format()
+    {
+        $data = [
+            'id' => $this->id,
+            'type' => [
+                'id' => $this->attribute_type->id,
+                'name' => $this->attribute_type->name,
+                'description' => $this->attribute_type->description,
+            ],
+            'value' => [
+                'id' => $this->attribute_value->id,
+                'value' => $this->attribute_value->value,
+                'description' => $this->attribute_value->description,
+            ],
+        ];
+        return $data;
+    }
 }
