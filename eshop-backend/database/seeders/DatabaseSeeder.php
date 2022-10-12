@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Database\Factories\CategoryFactory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -15,11 +16,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Product::factory(100)->create();
+        \App\Models\Product::factory(10)->create();
 
         \App\Models\Order::factory(10)->create();
 
-        \App\Models\Review::factory(10)->create();
+        \App\Models\Review::factory(100)->create();
+
+        \App\Models\Category::factory(10)->create();
 
         DB::insert('INSERT INTO `attribute_types` (`id`, `name`, `description`) VALUES (1, "Color", "Color of the product");');
         DB::insert('INSERT INTO `attribute_types` (`id`, `name`, `description`) VALUES (2, "Size", "Size of the product");');
@@ -49,5 +52,11 @@ class DatabaseSeeder extends Seeder
 
 
         DB::insert("INSERT INTO `product_product_attribute` (`id`,`product_id`,`attribute_id`) VALUES (null,1,1),(null,1,2),(null,1,3),(null,2,4),(null,2,5),(null,2,6)");
+
+        // user1 - password
+        DB::insert("INSERT INTO users(id, name, email, email_verified_at, password, remember_token, created_at, updated_at) VALUES (1, 'user1', 'user@gmail.com', '2021-05-01 00:00:00', '$2a$12$/oPXiXLtjfkFJ.QXWMW2XOEHd77RnwxAeXqr10QHd7mTWKxIsPGV2', null, '2021-05-01 00:00:00', '2021-05-01 00:00:00')");
+
+        // admin - password
+        DB::insert("INSERT INTO users(id, name, email, email_verified_at, password, remember_token, created_at, updated_at) VALUES (2, 'admin', 'admin@gmail.com', '2021-05-01 00:00:00', '$2a$12$/oPXiXLtjfkFJ.QXWMW2XOEHd77RnwxAeXqr10QHd7mTWKxIsPGV2', null, '2021-05-01 00:00:00', '2021-05-01 00:00:00')");
     }
 }

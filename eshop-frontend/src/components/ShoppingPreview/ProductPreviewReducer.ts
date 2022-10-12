@@ -66,6 +66,7 @@ export const productSlice = createSlice({
     },
     setVariant: (state: IProductState, action: any) => {
       state.currentVariant = action.payload;
+      state.images = action.payload.images;
       return state;
     },
   },

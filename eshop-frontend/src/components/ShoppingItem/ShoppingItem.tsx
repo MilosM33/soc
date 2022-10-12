@@ -24,6 +24,7 @@ export interface IShoppingItem {
   images?: IImage[];
   description: string;
   wishlist?: boolean;
+  variants?: any[];
 }
 
 export function ShoppingItem(props: IShoppingItem) {
@@ -50,6 +51,10 @@ export function ShoppingItem(props: IShoppingItem) {
   }
 
   function addToCart() {
+    if (props.variants && props.variants.length > 0) {
+      navigate(`/product/${props.slug}`);
+      return;
+    }
     dispatch(
       addItem({
         ...props,
@@ -86,7 +91,7 @@ export function ShoppingItem(props: IShoppingItem) {
         </div>
       </div>
       <h1 className="text-xl font-medium text-slate-800">{props.name}</h1>
-      <h3 className="text-gray-400">${props.price}</h3>
+      <h3 className="text-gray-400">${Math.round(props.price * 100) / 100}</h3>
     </div>
   );
 }

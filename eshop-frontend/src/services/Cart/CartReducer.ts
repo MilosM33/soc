@@ -31,7 +31,7 @@ export const cartSlice = createSlice({
       } else {
         cartItems.push({
           item: newItem,
-          quantity: action.payload.quantity,
+          quantity: action.payload.quantity ?? 1,
           variant: variant,
         });
       }
@@ -39,8 +39,11 @@ export const cartSlice = createSlice({
       state.items = cartItems;
     },
     removeItem: (state, action) => {
+      const variant = action.payload.variant;
       state.items = state.items.filter(
-        (item) => item.item.name !== action.payload
+        (item) =>
+          item.item.name !== action.payload.name ||
+          item.variant?.name !== variant?.name
       );
     },
     setQuantity: (state, action) => {

@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { AiOutlineShareAlt } from "react-icons/ai";
 import Button from "../components/Utils/Button/Button";
 import { useLocation, useNavigate } from "react-router-dom";
 import Layout from "../components/Layout/Layout";
@@ -12,7 +11,7 @@ import { toast } from "react-toastify";
 import ReviewSection from "../components/ShoppingPreview/ReviewSection/ReviewSection";
 import { Product } from "../services/Api/Product";
 import Skeleton from "../components/Utils/Skeleton/Skeleton";
-
+import ShareButton from "../components/ShareButton/ShareButton";
 // carousel
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper";
@@ -30,6 +29,7 @@ import {
   setProduct,
   setNumberOfItems,
   setVariant,
+  setState,
 } from "../components/ShoppingPreview/ProductPreviewReducer";
 
 export default function ProductPreview(props: any) {
@@ -47,6 +47,13 @@ export default function ProductPreview(props: any) {
       .then((res) => {
         dispatch(setProduct(res.data));
         dispatch(setImages(res.data.images));
+
+        if (res.data.variants.length > 0) {
+          const VARIANT = res.data.variants[0].name;
+          Product.getVariantInfo(PRODUCT_SLUG, VARIANT).then((res) => {
+            dispatch(setVariant(res.data));
+          });
+        }
       })
       .catch((err) => {
         navigate("/products/404");
@@ -69,6 +76,7 @@ export default function ProductPreview(props: any) {
             price: state.currentVariant.price,
           },
           quantity: state.quantity,
+          images: state.currentVariant.images,
         })
       );
     } else {
@@ -85,8 +93,10 @@ export default function ProductPreview(props: any) {
   function changeVariant(e: any) {
     if (state.product === null || state.product.slug == null) return;
     const option = e.target.value;
+    dispatch(setState(true));
     Product.getVariantInfo(state.product.slug, option).then((res) => {
       dispatch(setVariant(res.data));
+      dispatch(setState(false));
     });
   }
 
@@ -138,10 +148,13 @@ export default function ProductPreview(props: any) {
                 dispatch(setNumberOfItems(number));
               }}
             ></ValueIncrement>
-            <Button type={"primary"} className="w-64" onClick={AddToCart}>
-              Add to cart
-            </Button>
-            <AiOutlineShareAlt className="text-3xl" />
+            {!state.loading && (
+              <Button type={"primary"} className="w-64" onClick={AddToCart}>
+                Add to cart
+              </Button>
+            )}
+
+            <ShareButton></ShareButton>
           </div>
         </section>
         <section className="flex-1 order-1 lg:order-2 relative overflow-hidden">
@@ -186,49 +199,61 @@ export default function ProductPreview(props: any) {
 
       <section className="px-4 mt-5 w-full lg:w-1/2">
         <h1 className="text-2xl my-8">Product parameters</h1>
-        {state.currentVariant?.attributes?.map((attribute: any, _: number) => {
-          return (
-            <div
-              className={`${
-                _ % 2 ? "bg-slate-300" : "bg-slate-200"
-              } px-8 py-2 flex justify-between`}
-            >
-              <Tooltip
-                text={attribute.type.name}
-                hint={attribute.type.description}
-              ></Tooltip>
-              <Tooltip
-                text={attribute.value.value}
-                hint={attribute.value.description}
-              ></Tooltip>
-            </div>
-          );
-        })}
-        {state.attributes?.map((attribute: any, _: number) => {
-          return (
-            <div
-              className={`${
-                _ % 2 ? "bg-slate-300" : "bg-slate-200"
-              } px-8 py-2 flex justify-between`}
-            >
-              <Tooltip
-                text={attribute.type.name}
-                hint={attribute.type.description}
-              ></Tooltip>
-              <Tooltip
-                text={attribute.value.value}
-                hint={attribute.value.description}
-              ></Tooltip>
-            </div>
-          );
-        })}
+        {state.loading &&
+          Array(10)
+            .fill(0)
+            .map((_, i) => <Skeleton type="text"></Skeleton>)}
+        {!state.loading &&
+          state.currentVariant?.attributes?.map((attribute: any, _: number) => {
+            return (
+              <div
+                className={`${
+                  _ % 2 ? "bg-slate-300" : "bg-slate-200"
+                } px-8 py-2 flex justify-between`}
+              >
+                <Tooltip
+                  text={attribute.type.name}
+                  hint={attribute.type.description}
+                ></Tooltip>
+                <Tooltip
+                  text={attribute.value.value}
+                  hint={attribute.value.description}
+                ></Tooltip>
+              </div>
+            );
+          })}
+
+        {!state.loading &&
+          state.attributes?.map((attribute: any, _: number) => {
+            return (
+              <div
+                className={`${
+                  _ % 2 ? "bg-slate-300" : "bg-slate-200"
+                } px-8 py-2 flex justify-between`}
+              >
+                <Tooltip
+                  text={attribute.type.name}
+                  hint={attribute.type.description}
+                ></Tooltip>
+                <Tooltip
+                  text={attribute.value.value}
+                  hint={attribute.value.description}
+                ></Tooltip>
+              </div>
+            );
+          })}
       </section>
       <div className="px-4 mt-16">
         {state.loading ? (
           <Skeleton type="text" />
         ) : (
           <ReviewSection
-            {...{ loading: state.loading, reviews: state.reviews }}
+            {...{
+              loading: state.loading,
+              reviews: false
+                ? state.currentVariant.reviews ?? []
+                : state.reviews,
+            }}
           />
         )}
 

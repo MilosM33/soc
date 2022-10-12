@@ -12,6 +12,7 @@ import {
   QueryClient,
   QueryClientProvider,
 } from "@tanstack/react-query";
+import { Category } from "../../../services/Api/Category";
 
 export interface IShoppingItems {
   per_page: number;
@@ -39,8 +40,14 @@ export default function ShoppingSection(props: any) {
     }
   );
   const { ref, inView } = useInView();
+
+  const [category, setCategory] = useState<any>(null);
+
   useEffect(() => {
-    if (inView) {
+    Category.getAll().then((res) => {
+      setCategory(res.data);
+    });
+    if (inView && !isFetching) {
       console.log("fetching next page");
       fetchNextPage();
     }
@@ -50,10 +57,10 @@ export default function ShoppingSection(props: any) {
       <div className="text-center">
         <h1 className="text-4xl my-4">Shop</h1>
         <ul className="flex justify-center space-x-2">
-          <li>Computers</li>
-          <li>Computers</li>
-          <li>Computers</li>
-          <li>Computers</li>
+          {category &&
+            category.map((cat: any) => {
+              return <li className="cursor-pointer">{cat.name}</li>;
+            })}
         </ul>
       </div>
       <div className="flex justify-between my-4">

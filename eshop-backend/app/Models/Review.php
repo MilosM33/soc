@@ -9,7 +9,7 @@ class Review extends Model
 {
     use HasFactory;
     protected $table = 'reviews';
-    protected $hidden = ['reviewable_type', 'reviewable_id'];
+    protected $hidden = ['reviewable_type', 'reviewable_id', 'user_id'];
 
     public function product()
     {

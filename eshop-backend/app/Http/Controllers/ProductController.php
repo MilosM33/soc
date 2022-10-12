@@ -14,7 +14,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return Product::with('categories', 'images')->paginate(10);
+        return Product::with('categories', 'images', 'variants')->paginate(10);
     }
 
     public function info($slug)
@@ -72,6 +72,30 @@ class ProductController extends Controller
                 ];
                 return $data;
             });
+
+
+            $variantReviews = $product->variants->map(function ($variant) {
+                return $variant->reviews;
+            });
+
+            $reviews = $product->reviews->merge($variantReviews->flatten());
+
+            // join reviews
+            $reviews = $reviews->map(function ($review) {
+                $data = [
+                    'id' => $review->id,
+                    'rating' => $review->rating,
+                    'comment' => $review->comment,
+                    'created_at' => $review->created_at,
+                    'updated_at' => $review->updated_at,
+                    'name' => $review->user->name,
+
+                ];
+                return $data;
+            });
+            unset($product->reviews);
+            $product->reviews = $reviews;
+
             unset($product->attributes);
             $product->attributes = $attributes;
             return $product;

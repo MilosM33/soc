@@ -22,7 +22,12 @@ export default function ShoppingCartItem(props: ICartItem) {
   const dispatch = useDispatch();
 
   function handleRemove() {
-    dispatch(removeItem(item.name));
+    dispatch(
+      removeItem({
+        name: item.name,
+        variant: props.variant,
+      })
+    );
   }
   function handleChange(value: any) {
     dispatch(

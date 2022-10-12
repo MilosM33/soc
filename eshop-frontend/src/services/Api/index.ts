@@ -1,5 +1,4 @@
 import axios from "axios";
-import { UserAuth } from "../User/UserAuth";
 function getAuth() {
   const auth = localStorage.getItem("Auth");
   if (auth) {

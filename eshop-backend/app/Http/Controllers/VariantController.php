@@ -68,6 +68,23 @@ class VariantController extends Controller
                     ];
                     return $data;
                 });
+
+                // join reviews
+                $reviews = $variant->reviews->map(function ($review) {
+                    $data = [
+                        'id' => $review->id,
+                        'rating' => $review->rating,
+                        'comment' => $review->comment,
+                        'created_at' => $review->created_at,
+                        'updated_at' => $review->updated_at,
+                        'name' => $review->user->name,
+
+                    ];
+                    return $data;
+                });
+                unset($variant->reviews);
+                $variant->reviews = $reviews;
+
                 unset($variant->attributes);
                 $variant->attributes = $attributes;
                 return $variant;
