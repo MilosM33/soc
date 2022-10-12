@@ -18,7 +18,7 @@ class ProductVariant extends Model
     }
     public function attributes()
     {
-        return $this->belongsToMany(ProductAttribute::class, 'variant_attributes', 'variant_id', 'attribute_id');
+        return $this->belongsToMany(ProductAttribute::class, 'product_variant_attributes', 'variant_id', 'attribute_id');
     }
     public function images()
     {
