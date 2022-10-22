@@ -3,6 +3,8 @@ import "./Style/style.css";
 import MainPage from "./Pages/Main";
 import Preview from "./Pages/Preview";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Provider } from "react-redux"
+import store from "./store";
 
 const router = createBrowserRouter([
   {
@@ -12,13 +14,16 @@ const router = createBrowserRouter([
   {
     path: "/preview",
     element: <Preview />,
-  }
+  },
 ]);
 
 function App() {
   return (
     <React.StrictMode>
-      <RouterProvider router={router} />
+      <Provider store={store}>
+        <RouterProvider router={router} />
+      </Provider>
+      ,
     </React.StrictMode>
   );
 }

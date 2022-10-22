@@ -1,11 +1,12 @@
 import React from "react";
 import {
   AiFillHeart,
-  AiFillStar,
   AiOutlineHeart,
   AiOutlineShoppingCart,
 } from "react-icons/ai";
 import { useState } from "react";
+import IconButton from "../Forms/IconButton/IconButton";
+import ReviewStars from "../ReviewStars/ReviewStars";
 export default function Product() {
   const [isFavorite, setIsFavorite] = useState(false);
   return (
@@ -25,20 +26,18 @@ export default function Product() {
             )}
           </div>
           <div className="bg-white p-2 rounded-full">
-            <AiOutlineShoppingCart className="text-2xl relative hover:rotate" />
+            <IconButton onClick={() => 0}>
+              <AiOutlineShoppingCart />
+            </IconButton>
           </div>
         </div>
         <div className="absolute top-2 right-2 flex flex-col">
           <span className="bg-red-400 text-white rounded-full px-4">Sale</span>
         </div>
       </section>
-      <section className="flex gap-2 my-2">
-        <AiFillStar className="text-red-400"></AiFillStar>
-        <AiFillStar className="text-red-400"></AiFillStar>
-        <AiFillStar className="text-red-400"></AiFillStar>
-        <AiFillStar className="text-red-100"></AiFillStar>
-        <AiFillStar className="text-red-100"></AiFillStar>
-      </section>
+
+      <ReviewStars rating={4}></ReviewStars>
+
       <section className="flex justify-between items-center">
         <h3 className="text-primary text-xl">Product 1</h3>
         <h4 className="text-primary font-medium text-xl">56 000 €</h4>

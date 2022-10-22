@@ -1,11 +1,10 @@
 import React from "react";
 import { AiOutlineShoppingCart } from "react-icons/ai";
-import BlackOverlay from "../Components/BlackOverlay/BlackOverlay";
 import Cart from "../Components/Cart/Cart";
 import SearchInput from "../Components/Forms/SearchInput/SearchInput";
 
-import Hamburger from "../Components/Hamburger/Hamburger";
-import MegaMenu from "../Components/MegaMenu/MegaMenu";
+import Hamburger from "../Components/Forms/Hamburger/Hamburger";
+import MegaMenu from "../Components/Navigation/MegaMenu/MegaMenu";
 import NavLink from "../Components/Navigation/NavLink/NavLink";
 export default function Header() {
   return (
@@ -25,11 +24,9 @@ export default function Header() {
         </nav>
         <section className="flex gap-2 items-center justify-end">
           <SearchInput></SearchInput>
-          <AiOutlineShoppingCart className="text-2xl"></AiOutlineShoppingCart>
+          <Cart></Cart>
         </section>
       </nav>
-      <BlackOverlay></BlackOverlay>
-      <Cart></Cart>
     </header>
   );
 }

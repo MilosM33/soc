@@ -1,5 +1,5 @@
 import React from "react";
-import NavLink from "../Navigation/NavLink/NavLink";
+import NavLink from "../NavLink/NavLink";
 export default function MegaMenu(props: any) {
   return (
     <section className="absolute top-full left-0 w-full bg-white shadow-lg max-h-0 group-hover:max-h-[500px] transition-all duration-300 overflow-hidden">
