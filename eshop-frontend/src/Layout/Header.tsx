@@ -13,7 +13,7 @@ export default function Header() {
         <Hamburger></Hamburger>
         <nav className="hidden md:block">
           <ul className="flex space-x-8">
-            <NavLink to="#" label="Home" primaryLink></NavLink>
+            <NavLink to="/" label="Home" primaryLink></NavLink>
             <NavLink to="#" label="Products" primaryLink>
               <MegaMenu></MegaMenu>
             </NavLink>

@@ -3,9 +3,9 @@ export default interface IProductListing {
   key?: string;
   title: string;
   description: string;
-  url: string;
-  tags: string[];
-  variants?: IProductListingVariant[];
+  slug: string;
+  tags?: string[];
+  variants: IProductListingVariant[];
   selectedVariant: IProductListingVariant;
 }
 

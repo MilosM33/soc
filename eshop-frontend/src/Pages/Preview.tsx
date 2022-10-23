@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Layout from "../Layout/Layout";
 
 import {
@@ -16,26 +16,46 @@ import "swiper/css";
 import Button from "../Components/Forms/Button/Button";
 import TextInput from "../Components/Forms/TextInput/TextInput";
 import BreadCrumbs from "../Components/BreadCrumbs/BreadCrumbs";
+import PreviewCarousel from "../Components/Product/PreviewCarousel/PreviewCarousel";
+import { Autoplay, Pagination, Navigation } from "swiper";
 
-export default function Preview(props: any) {
+export default function Preview() {
+  useEffect(() => {}, []);
   return (
     <Layout>
       <div className="container mx-auto">
         <section className="py-8 pb-16 flex flex-col gap-4 lg:flex-row lg:gap-8">
-          <Swiper
-            spaceBetween={50}
-            slidesPerView={1}
-            onSwiper={(swiper) => console.log(swiper)}
-            className="w-full lg:max-w-lg"
-          >
-            <SwiperSlide className="w-full">
-              <img
-                src="https://via.placeholder.com/512"
-                className="w-full h-[512px] lg:h-auto lg:aspect-square object-fit"
-                alt=""
-              />
-            </SwiperSlide>
-          </Swiper>
+          <section className="flex space-x-4 max-h-[512px] h-screen overflow-hidden">
+            <PreviewCarousel></PreviewCarousel>
+            <Swiper
+              spaceBetween={50}
+              slidesPerView={1}
+              onSwiper={(swiper) => console.log(swiper)}
+              className="w-full lg:max-w-lg"
+              loop={true}
+              modules={[Pagination, Navigation, Autoplay]}
+              pagination={{ clickable: true }}
+              autoplay={{
+                delay: 2500,
+                disableOnInteraction: false,
+              }}
+            >
+              <SwiperSlide className="w-full">
+                <img
+                  src="https://via.placeholder.com/512"
+                  className="w-full h-[512px] lg:h-auto lg:aspect-square object-fit"
+                  alt=""
+                />
+              </SwiperSlide>
+              <SwiperSlide className="w-full">
+                <img
+                  src="https://via.placeholder.com/512"
+                  className="w-full h-[512px] lg:h-auto lg:aspect-square object-fit"
+                  alt=""
+                />
+              </SwiperSlide>
+            </Swiper>
+          </section>
           <section className="flex-1">
             <BreadCrumbs></BreadCrumbs>
             <h1 className="text-2xl text-primary uppercase">
@@ -80,7 +100,6 @@ export default function Preview(props: any) {
           {/*
             HTML SECTION
           */}
-          {props.html}
         </section>
         <section className="mb-8">
           <h1 className="text-2xl text-primary uppercase">

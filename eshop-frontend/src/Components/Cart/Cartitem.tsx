@@ -51,7 +51,7 @@ export default function CartItem(props: ICartItem) {
       <section className="flex-1 px-4">
         <div className="flex justify-between">
           <h1>{props.title}</h1>
-          <IconButton onClick={removeItem}>
+          <IconButton onClick={removeItem} defaultSize={false}>
             <AiOutlineClose></AiOutlineClose>
           </IconButton>
         </div>

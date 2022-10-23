@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   AiFillHeart,
   AiOutlineHeart,
@@ -11,10 +11,13 @@ import { useDispatch } from "react-redux";
 import { addToCart } from "../../Reducers/Cart/CartReducer";
 import IProductListing from "./IProductListing";
 import { ICartItem } from "../../Reducers/Cart/ICartItem";
+
+import { Link } from "react-router-dom";
 export default function ProductListing(props: IProductListing) {
   const [isFavorite, setIsFavorite] = useState(false);
 
   const [product, setProduct] = useState<IProductListing>({ ...props });
+  const PRODUCT_URL = "./products/" + props.slug;
 
   function toggleFavorite() {
     setIsFavorite(!isFavorite);
@@ -47,11 +50,13 @@ export default function ProductListing(props: IProductListing) {
       key={props.key}
     >
       <section className="relative w-full">
-        <img
-          src={product.selectedVariant.image}
-          alt=""
-          className="w-full aspect-square object-cover rounded-lg"
-        />
+        <Link to={PRODUCT_URL}>
+          <img
+            src={product.selectedVariant.image}
+            alt=""
+            className="w-full aspect-square object-cover rounded-lg"
+          />
+        </Link>
         <div className="absolute w-full px-4 flex justify-between bottom-4 left-0">
           <div className="bg-white p-2 rounded-full">
             {isFavorite ? (
@@ -67,7 +72,7 @@ export default function ProductListing(props: IProductListing) {
           </div>
         </div>
         <div className="absolute top-2 right-2 flex flex-col space-y-2">
-          {props.tags.map((tag, index) => (
+          {props.tags?.map((tag, index) => (
             <span className="bg-red-400 text-white rounded-full px-4">
               {tag}
             </span>
@@ -81,7 +86,9 @@ export default function ProductListing(props: IProductListing) {
       ></ReviewStars>
 
       <section className="flex justify-between items-center">
-        <h3 className="text-primary text-xl">{product.title}</h3>
+        <Link to={PRODUCT_URL}>
+          <h3 className="text-primary text-xl">{product.title}</h3>
+        </Link>
         <h4 className="text-primary font-medium text-xl">
           {product.selectedVariant.price} €
         </h4>

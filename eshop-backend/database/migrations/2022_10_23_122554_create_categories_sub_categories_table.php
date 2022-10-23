@@ -13,11 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('product_images', function (Blueprint $table) {
+        Schema::create('categories_sub_categories', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('imageable_id');
-            $table->string('image');
-            $table->string('imageable_type');
+            $table->unsignedBigInteger('category_id')->references('id')->on('product_categories');
+            $table->unsignedBigInteger('sub_category_id')->references('id')->on('product_sub_categories');
         });
     }
 
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product_images');
+        Schema::dropIfExists('categories_sub_categories');
     }
 };

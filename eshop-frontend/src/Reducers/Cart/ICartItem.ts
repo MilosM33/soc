@@ -1,7 +1,7 @@
 export interface ICartItem {
   id: number;
   title: string;
-  url: string;
+  slug: string;
   quantity: number;
   variants?: ICartItemVariant[];
   selectedVariant: ICartItemVariant;

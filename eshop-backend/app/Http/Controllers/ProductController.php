@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Http\Resources\ProductResource;
 
 class ProductController extends Controller
 {
@@ -14,7 +15,12 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return Product::with('categories', 'images', 'variants')->paginate(10);
+        $products = Product::with('variants')->active()->paginate(10);
+        // remove products without variants
+        $products = $products->filter(function ($product) {
+            return $product->variants->count() > 0;
+        });
+        return ProductResource::collection($products);
     }
 
     public function info($slug)
@@ -51,56 +57,13 @@ class ProductController extends Controller
     public function show($slug)
     {
 
-        $products = Product::with('categories', 'variants', 'reviews', 'attributes', 'images')->where('slug', $slug);
-        if ($products->count() > 0) {
+        $products = Product::with('variants')->where('slug', $slug)->get();
 
-            // join attributes
-            $product = $products->first();
-            $attributes = $product->attributes->map(function ($attribute) {
-                $data = [
-                    'id' => $attribute->id,
-                    'type' => [
-                        'id' => $attribute->attribute_type->id,
-                        'name' => $attribute->attribute_type->name,
-                        'description' => $attribute->attribute_type->description,
-                    ],
-                    'value' => [
-                        'id' => $attribute->attribute_value->id,
-                        'value' => $attribute->attribute_value->value,
-                        'description' => $attribute->attribute_value->description,
-                    ],
-                ];
-                return $data;
-            });
-
-
-            $variantReviews = $product->variants->map(function ($variant) {
-                return $variant->reviews;
-            });
-
-            $reviews = $product->reviews->merge($variantReviews->flatten());
-
-            // join reviews
-            $reviews = $reviews->map(function ($review) {
-                $data = [
-                    'id' => $review->id,
-                    'rating' => $review->rating,
-                    'comment' => $review->comment,
-                    'created_at' => $review->created_at,
-                    'updated_at' => $review->updated_at,
-                    'name' => $review->user->name,
-
-                ];
-                return $data;
-            });
-            unset($product->reviews);
-            $product->reviews = $reviews;
-
-            unset($product->attributes);
-            $product->attributes = $attributes;
-            return $product;
+        if (count($products) > 0) {
+            return $products[0];
+        } else {
+            return response("Product not found", 404);
         }
-        return response()->json(['error' => 'Product not found'], 404);
     }
 
 

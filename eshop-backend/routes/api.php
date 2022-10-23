@@ -24,23 +24,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
-
-Route::group(['prefix' => 'auth'], function () {
-    Route::post('login', [AuthController::class, 'login']);
-    Route::post('register', [AuthController::class, 'register']);
-    Route::post('logout', [AuthController::class, 'logout']);
-    Route::post('refresh', [AuthController::class, 'refresh']);
-    Route::get('me', [AuthController::class, 'me']);
-});
-
 Route::apiResource('/products', ProductController::class)->except(['create', 'edit']);
-Route::apiResource("products.attributes", AttributeController::class)->except(['create', 'edit']);
-
-Route::apiResource("/categories", CategoryController::class)->except(['create', 'edit']);
-
-Route::apiResource('products.variants', VariantController::class)->except(['create', 'edit']);
-
-Route::apiResource('products.attributes', AttributeController::class)->except(['create', 'edit']);
-
-Route::apiResource('products.reviews', ReviewController::class);
