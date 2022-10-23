@@ -1,6 +1,5 @@
 import React from "react";
 import Button from "../Components/Forms/Button/Button";
-import Product from "../Components/Product/Product";
 import SearchInput from "../Components/Forms/SearchInput/SearchInput";
 import Layout from "../Layout/Layout";
 import { AiOutlineArrowDown, AiOutlineArrowUp } from "react-icons/ai";
@@ -11,7 +10,7 @@ import { Thumbs, Navigation, Pagination, Autoplay } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import BlackOverlay from "../Components/BlackOverlay/BlackOverlay";
+import ProductSection from "../Components/Product/ProductSection";
 
 export default function MainPage() {
   return (
@@ -20,7 +19,6 @@ export default function MainPage() {
         <Swiper
           spaceBetween={50}
           slidesPerView={1}
-          onSlideChange={() => console.log("slide change")}
           onSwiper={(swiper) => console.log(swiper)}
           className="w-full"
           modules={[Thumbs, Navigation, Pagination, Autoplay]}
@@ -93,11 +91,7 @@ export default function MainPage() {
             <AiOutlineArrowUp className="text-4xl bg-gray-500 p-2 rounded-full"></AiOutlineArrowUp>
             <AiOutlineArrowDown className="text-4xl bg-gray-500 p-2 rounded-full"></AiOutlineArrowDown>
           </div>
-          <div className="my-5 grid justify-center grid-cols-1 md:grid-cols-2 md:gap-4 lg:grid-cols-3 xl:grid-cols-4">
-            {Array.from({ length: 6 }).map((_, index) => (
-              <Product key={index}></Product>
-            ))}
-          </div>
+          <ProductSection></ProductSection>
         </section>
       </section>
     </Layout>

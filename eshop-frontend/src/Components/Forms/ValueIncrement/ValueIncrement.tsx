@@ -7,14 +7,25 @@ export interface ValueIncrementProps {
   value: number;
   onChange?: (value: number) => void;
   className?: string;
+  min?: number;
+  max?: number;
 }
 export default function ValueIncrement(props: ValueIncrementProps) {
   function increment() {
-    props.onChange?.(props.value + 1);
+    let result = props.value + 1;
+    if (props.max && result > props.max) {
+      result = props.max;
+    }
+    props.onChange?.(result);
   }
   function decrement() {
-    props.onChange?.(props.value - 1);
+    let result = props.value - 1;
+    if (props.min && result < props.min) {
+      result = props.min;
+    }
+    props.onChange?.(result);
   }
+
   function onTextChange(value: string) {
     props.onChange?.(parseInt(value));
   }

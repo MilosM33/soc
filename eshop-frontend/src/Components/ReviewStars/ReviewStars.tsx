@@ -26,6 +26,7 @@ export default function ReviewStars(props: ReviewStarsProps) {
     <section
       className="flex gap-2 my-2 select-none"
       onMouseLeave={onMouseLeave}
+      key={props.rating}
     >
       {Array.from({ length: 5 }, (_, i) => (
         <AiFillStar
