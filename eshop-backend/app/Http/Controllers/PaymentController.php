@@ -44,6 +44,8 @@ class PaymentController extends Controller
         $id = $request->input('data')['object']['metadata']['order_id'];
         $order = Order::find($id)->update(['status' => 'paid']);
 
+        $order = Order::find($id);
+
         $user = User::where('id', '=', $order->user_id)->first();
         Mail::to($order->user->email)->send(new OrderPaid($order, $user));
 
