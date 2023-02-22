@@ -47,7 +47,13 @@ class PaymentController extends Controller
         $order = Order::find($id);
 
         $user = User::where('id', '=', $order->user_id)->first();
-        Mail::to($user->email)->send(new OrderPaid($order, $user));
+        $email = $user->email;
+
+        if($email == null){
+            $email = $order->invoiceDetails->email;
+        }
+
+        Mail::to($email)->send(new OrderPaid($order, $user));
 
         return response()->json($order);
     }
