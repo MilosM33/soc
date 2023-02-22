@@ -12,6 +12,13 @@ class Order extends Model
 
     protected $table = 'orders';
 
+    public $fillable = [
+        'user_id',
+        'status',
+        'total_price',
+
+    ];
+
 
     public function products()
     {

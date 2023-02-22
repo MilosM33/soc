@@ -78,12 +78,7 @@ class Product extends Model
                 }
             }
         });
-
         $params = array_diff(array_keys(request()->input()), $ignoreParams);
-        // remove params where key == value
-
-
-
         if (count($params) > 0) {
             $temp = $temp->whereHas('attributes.type', function ($query) use ($ignoreParams) {
 
