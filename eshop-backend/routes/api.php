@@ -11,6 +11,10 @@ use App\Http\Controllers\NewsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Mail;
+use App\Mail\SendMail;
+use App\Mail\OrderCreatedEmail;
+use App\Models\Order;
+use App\Http\Controllers\OrdersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -93,4 +97,19 @@ Route::group(['middleware' => ['checkRole:admin']], function () {
     Route::post("/admin/categories/create", [CategoryController::class, 'createCategory']);
     Route::post("/admin/categories/update", [CategoryController::class, 'updateCategory']);
     Route::post("/admin/categories/delete", [CategoryController::class, 'deleteCategory']);
+});
+
+
+Route::get("/test", function () {
+
+    //  $order = Order::find(1);
+
+    $controller = new OrderController();
+    $controller->generateInvoice(null);
+    Mail::to('milosmarejka89@gmail.com')->send(new \App\Mail\OrderCreatedEmail(null, 'Milos Marejka', null));
+
+
+    return response()->json([
+        'message' => 'test'
+    ]);
 });
