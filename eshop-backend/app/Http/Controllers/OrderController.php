@@ -66,10 +66,8 @@ class OrderController extends Controller
 
         $customerName = Auth::user()->name ?? $request->input('shippingForm')['firstName'];
 
-        Mail::to($email)->send(new \App\Mail\OrderCreatedEmail($order, null, $customerName, $invoice))->attachData($invoice, 'invoice.pdf', [
-            'mime' => 'application/pdf',
-
-        ]);
+        Mail::to($email)->send(new \App\Mail\OrderCreatedEmail($order, null, $customerName, $invoice));
+        
         return response()->json($order);
     }
 

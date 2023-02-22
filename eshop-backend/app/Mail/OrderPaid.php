@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class OrderCreatedEmail extends Mailable
+class OrderPaid extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -18,14 +18,11 @@ class OrderCreatedEmail extends Mailable
      */
 
     public $order;
-    public $invoice;
-    public $customerName;
-
-    public function __construct($order, $customerName, $invoice)
+    public $user;
+    public function __construct($order, $user)
     {
         $this->order = $order;
-        $this->customerName = $customerName;
-        $this->invoice = $invoice;
+        $this->user = $user;
     }
 
     /**
@@ -35,13 +32,10 @@ class OrderCreatedEmail extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.order.created')
-            ->subject('Order created')
-            ->with([
+        return $this->view('emails.order.payment')
+            ->subject('Order paid')->with([
                 'order' => $this->order,
-                'customerName' => $this->customerName,
-            ])->attachData($this->invoice, 'invoice.pdf', [
-                'mime' => 'application/pdf',
+                'user' => $this->user,
             ]);
     }
 }

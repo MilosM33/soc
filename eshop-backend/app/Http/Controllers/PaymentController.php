@@ -7,7 +7,9 @@ use App\Models\OrderItem;
 use App\Models\Product;
 use App\Models\ProductVariant;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Mail;
+use App\Mail\OrderPaid;
+use App\Models\User;
 
 class PaymentController extends Controller
 {
@@ -41,6 +43,9 @@ class PaymentController extends Controller
     {
         $id = $request->input('data')['object']['metadata']['order_id'];
         $order = Order::find($id)->update(['status' => 'paid']);
+
+        $user = User::where('id', '=', $order->user_id)->first();
+        Mail::to($order->user->email)->send(new OrderPaid($order, $user));
 
         return response()->json($order);
     }
