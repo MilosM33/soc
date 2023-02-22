@@ -4,7 +4,7 @@
 
 <p>Order Details:</p>
 
-<table>
+<table style="border: solid 2px black">
     <tr>
         <td>Order Number:</td>
         <td>{{ $order->id }}</td>
@@ -15,7 +15,7 @@
     </tr>
     <tr>
         <td>Order Total:</td>
-        <td>{{ $order->total_price }}</td>
+        <td>{{ $order->total_price }} €</td>
     </tr>
 </table>
 
