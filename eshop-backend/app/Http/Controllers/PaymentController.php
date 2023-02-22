@@ -50,7 +50,13 @@ class PaymentController extends Controller
         if ($user != null) {
             $email = $user->email;
         } else {
+
             $email = $order->invoiceDetails->email;
+            $user = array(
+                'name' => $order->invoiceDetails->full_name,
+                'email' => $order->invoiceDetails->email,
+
+            );
         }
 
 
