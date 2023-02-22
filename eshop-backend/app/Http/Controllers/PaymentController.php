@@ -40,9 +40,7 @@ class PaymentController extends Controller
     public function onPaymentSuccess(Request $request)
     {
         $id = $request->input('data')['object']['metadata']['order_id'];
-        $order = Order::find($id);
-        $order->status = "paid";
-        $order->save();
+        $order = Order::find($id)->update(['status' => 'paid']);
 
         return response()->json($order);
     }
