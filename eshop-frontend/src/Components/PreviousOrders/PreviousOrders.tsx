@@ -58,7 +58,7 @@ export default function PreviousOrders() {
                 <td>{order.status}</td>
                 <td>
                   <a
-                    href={`http://everydayessentials.tech/:8000/api/invoice/${order.id}`}
+                    href={`http://everydayessentials.tech:8000/api/invoice/${order.id}`}
                     target="_blank"
                     rel="noreferrer"
                     className="text-red-400 underline "

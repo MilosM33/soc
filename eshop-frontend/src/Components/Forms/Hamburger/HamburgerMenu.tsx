@@ -3,18 +3,24 @@ import {
   AiFillFacebook,
   AiFillInstagram,
   AiFillTwitterCircle,
+  AiOutlineBell,
   AiOutlineClose,
   AiOutlineFacebook,
   AiOutlineHeart,
   AiOutlineInstagram,
+  AiOutlineShoppingCart,
   AiOutlineTwitter,
   AiOutlineUser,
 } from "react-icons/ai";
 import IconButton from "../IconButton/IconButton";
 import { useLayoutEffect } from "react";
 import { useNavigate } from "react-router";
-import { useSelector } from "react-redux";
+
 import { toast } from "react-toastify";
+import UserInfo from "../../UserInfo/UserInfo";
+import Cart from "../../Cart/Cart";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleCart } from "../../../Reducers/Cart/CartReducer";
 export default function HamburgerMenu({
   IsOpen,
   SetIsOpen,
@@ -24,6 +30,7 @@ export default function HamburgerMenu({
 }) {
   const navigate = useNavigate();
   const user = useSelector((state: any) => state.user);
+  const dispatch = useDispatch();
 
   const element = document.getElementById("portal");
   useLayoutEffect(() => {
@@ -50,29 +57,30 @@ export default function HamburgerMenu({
             <AiOutlineClose />
           </IconButton>
           <div className="my-4 space-y-2">
+            <IconButton onClick={() => {}}>
+              <AiOutlineBell></AiOutlineBell>
+            </IconButton>
             <IconButton
               onClick={() => {
                 navigate("/wishlist");
               }}
             >
-              <AiOutlineHeart />
+              <AiOutlineHeart></AiOutlineHeart>
             </IconButton>
-            <IconButton
-              onClick={() => {
-                if (user.isAuth) {
-                  navigate("/my-account");
-                } else {
-                  toast.error("Please login to view your account");
-                  SetIsOpen(false);
-                }
-              }}
-            >
-              <AiOutlineUser />
+
+            <IconButton onClick={() => {
+              dispatch(toggleCart())
+              console.log("cart")
+            }}>
+              <AiOutlineShoppingCart></AiOutlineShoppingCart>
             </IconButton>
+            <UserInfo></UserInfo>
           </div>
         </div>
 
-        <div className="p-10 flex-1 h-full bg-gray-200 flex flex-col">
+        <div className="p-10 flex-1 h-full flex flex-col">
+          <div id="sidebar"></div>
+
           <div className="mt-auto flex gap-2 text-xl">
             <a href="https://www.facebook.com" target="_blank">
               <AiFillFacebook></AiFillFacebook>

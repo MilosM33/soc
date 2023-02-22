@@ -1038,10 +1038,6 @@ video {
   width: 24rem;
 }
 
-.w-1\/4{
-  width: 25%;
-}
-
 .w-32{
   width: 8rem;
 }
@@ -1943,12 +1939,20 @@ video {
     align-items: flex-start;
   }
 
+  .md\:items-center{
+    align-items: center;
+  }
+
   .md\:justify-between{
     justify-content: space-between;
   }
 
   .md\:gap-4{
     gap: 1rem;
+  }
+
+  .md\:gap-0{
+    gap: 0px;
   }
 
   .md\:px-0{
@@ -1982,6 +1986,10 @@ video {
 
   .lg\:h-auto{
     height: auto;
+  }
+
+  .lg\:w-1\/4{
+    width: 25%;
   }
 
   .lg\:w-1\/2{

@@ -23,6 +23,7 @@ import Select from "../Components/Forms/Select/Select";
 import Filters from "../Components/Filters/Filters";
 
 import { useQuery } from "@tanstack/react-query";
+import ReactDOM from "react-dom";
 
 export default function CategoryPage() {
   const { category_slug, subcategory_slug } = useParams<{
@@ -74,8 +75,6 @@ export default function CategoryPage() {
     if (categories.categories.length === 0) {
       Category.getCategories().then((response) => {
         dispatch(setCategories(response.data));
-
-        
       });
     }
     if (category_slug != null && subcategory_slug == null) {
@@ -120,44 +119,47 @@ export default function CategoryPage() {
       <div className="container mx-auto">
         <Breadcrumbs></Breadcrumbs>
         <div className="flex my-4">
-          <section className="w-1/4 p-4 border-2 rounded">
-            <h1 className="text-2xl font-medium my-2">Categories</h1>
-            {categories.categories.length == 0 &&
-              Array.from(Array(10).keys()).map((key) => (
-                <Skeleton className="my-2"></Skeleton>
-              ))}
+          {ReactDOM.createPortal(
+            <section className="w-full lg:w-1/4 p-4 rounded">
+              <h1 className="text-2xl font-medium my-2">Categories</h1>
+              {categories.categories.length == 0 &&
+                Array.from(Array(10).keys()).map((key) => (
+                  <Skeleton className="my-2"></Skeleton>
+                ))}
 
-            {categories?.categories && (
-              <>
-                <ul className="">
-                  {categories.categories?.map((category: any) => (
-                    <li
-                      onClick={() => {
-                        dispatch(setSelectedCategory(category));
-                      }}
-                    >
-                      <NavLink to={`/category/${category.slug}`}>
-                        {category.name}
-                      </NavLink>
-                    </li>
-                  ))}
-                </ul>
-              </>
-            )}
+              {categories?.categories && (
+                <>
+                  <ul className="">
+                    {categories.categories?.map((category: any) => (
+                      <li
+                        onClick={() => {
+                          dispatch(setSelectedCategory(category));
+                        }}
+                      >
+                        <NavLink to={`/category/${category.slug}`}>
+                          {category.name}
+                        </NavLink>
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              )}
 
-            <Filters
-              filters={filters}
-              OnSubmit={(values: any) => {
-                setFilterValues(values);
-              }}
-              OnReset={() => {
-                setFilterValues({
-                  category: category_slug,
-                  subcategory: subcategory_slug,
-                });
-              }}
-            ></Filters>
-          </section>
+              <Filters
+                filters={filters}
+                OnSubmit={(values: any) => {
+                  setFilterValues(values);
+                }}
+                OnReset={() => {
+                  setFilterValues({
+                    category: category_slug,
+                    subcategory: subcategory_slug,
+                  });
+                }}
+              ></Filters>
+            </section>,
+            document.getElementById("sidebar") ?? document.createElement("div")
+          )}
 
           <section className="flex-1 px-4">
             <h1 className="text-2xl">

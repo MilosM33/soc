@@ -74,6 +74,7 @@ Route::get("/track-order/{orderNumber}", [OrderController::class, 'trackOrder'])
 Route::get("/invoice/{orderNumber}", [OrderController::class, 'downloadInvoice']);
 
 Route::post("/payment/secret", [PaymentController::class, 'index']);
+Route::post("/payment/success", [PaymentController::class, 'onPaymentSuccess']);
 
 
 // admin

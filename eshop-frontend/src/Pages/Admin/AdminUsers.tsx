@@ -94,7 +94,7 @@ export default function AdminUsers() {
               }}
             ></TextInput>
             <Select
-              options={["User", "WarehouseWorker", "Admin"]}
+              options={["user", "warehouseworker", "admin"]}
               selected={selectedRow.role}
               onChange={(e) => {
                 setSelectedRow({ ...selectedRow, role: e.target.value });

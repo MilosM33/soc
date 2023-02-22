@@ -20,7 +20,7 @@ export default function Header() {
 
   return (
     <header className="w-full sticky top-0 bg-white shadow-lg z-10 ">
-      <nav className="container mx-auto px-4 py-2 flex justify-between items-center text-primary">
+      <nav className="flex flex-col gap-4 md:gap-0 items-start container mx-auto px-4 py-2 md:flex-row justify-between md:items-center text-primary">
         <section className="flex-1">
           <Hamburger OnClick={() => setHamburgerOpen(true)}></Hamburger>
           <HamburgerMenu
@@ -35,7 +35,7 @@ export default function Header() {
             </h1>
           </Link>
         </nav>
-        <section className="hidden md:flex gap-2 items-center justify-end flex-1">
+        <section className="flex gap-2 items-center justify-end flex-1">
           <SearchInput
             icon={<AiOutlineSearch className="text-2xl"></AiOutlineSearch>}
             placeholder="Search"
