@@ -49,6 +49,12 @@ class PaymentController extends Controller
         $user = User::where('id', '=', $order->user_id)->first();
         if ($user != null) {
             $email = $user->email;
+
+            $user = array(
+                'name' => $user->name,
+                'email' => $user->email,
+
+            );
         } else {
 
             $email = $order->invoiceDetails->email;

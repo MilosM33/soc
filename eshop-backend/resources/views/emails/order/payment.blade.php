@@ -1,4 +1,4 @@
-<p>Dear {{ $user->name }},</p>
+<p>Dear {{ $user["name"] }},</p>
 
 <p>We are writing to confirm that we have received payment for your recent order.</p>
 
