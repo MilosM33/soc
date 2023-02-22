@@ -68,11 +68,7 @@ class OrderController extends Controller
 
 
 
-        Mail::to($email)->queue(new \App\Mail\OrderCreatedEmail($order, null, $customerName), function ($message) use ($invoice) {
-            $message->attachData($invoice, 'invoice.pdf', [
-                'mime' => 'application/pdf',
-            ]);
-        });
+        Mail::to($email)->send(new \App\Mail\OrderCreatedEmail($order, null, $customerName, $invoice));
         return response()->json($order);
     }
 

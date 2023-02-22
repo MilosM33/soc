@@ -20,11 +20,12 @@ class OrderCreatedEmail extends Mailable
     public $order;
     public $invoice;
     public $customerName;
-    
-    public function __construct($order, $customerName)
+
+    public function __construct($order, $customerName, $invoice)
     {
         $this->order = $order;
         $this->customerName = $customerName;
+        $this->invoice = $invoice;
     }
 
     /**
@@ -39,6 +40,8 @@ class OrderCreatedEmail extends Mailable
             ->with([
                 'order' => $this->order,
                 'customerName' => $this->customerName,
+            ])->attachData($this->invoice, 'invoice.pdf', [
+                'mime' => 'application/pdf',
             ]);
     }
 }
