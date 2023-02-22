@@ -20,6 +20,7 @@ class OrderCreatedEmail extends Mailable
     public $order;
     public $invoice;
     public $customerName;
+    
     public function __construct($order, $customerName)
     {
         $this->order = $order;
