@@ -73,13 +73,13 @@
                     <td>{{ $item->name }}</td>
                     <td>{{ $item->variant_name }}</td>
                     <td>{{ $item->quantity }}</td>
-                    <td>{{ $item->price }}</td>
+                    <td>{{ $item->price }} €</td>
                 </tr>
                 @endforeach
                 <tr>
                     <td colspan="2" class="total">Total</td>
                     <td class="total">
-                        {{ $order->total_price }}
+                        {{ $order->total_price }} €
                     </td>
                     <td></td>
                     </tr>

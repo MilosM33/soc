@@ -40,7 +40,7 @@ class OrderCreatedEmail extends Mailable
             ->with([
                 'order' => $this->order,
                 'customerName' => $this->customerName,
-            ])->attachData($this->invoice, 'invoice.pdf', [
+            ])->attach($this->invoice, 'invoice.pdf', [
                 'mime' => 'application/pdf',
             ]);
     }
