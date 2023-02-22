@@ -1,0 +1,65 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+* {
+  font-family: "Roboto", sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden;
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+}
+@media screen and (max-width: 768px) {
+  .swiper-button-prev,
+  .swiper-button-next {
+    display: none !important;
+  }
+}
+@media screen and (min-width: 768px) {
+  .swiper-button-prev {
+    left: 50px !important;
+  }
+  .swiper-button-next {
+    right: 50px !important;
+  }
+}
+
+@keyframes fill {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: 5000;
+  }
+}
+/*
+  Create infinite animated moving background
+  Background should be gradient from white to gray
+
+*/
+.skeleton {
+  background: linear-gradient(
+    to right,
+    #cecece 0%,
+    #f3f3f3 10%,
+    #e5e5e5 100%
+  );
+  animation: skeleton 2s infinite linear;
+  width: auto;
+  height: auto;
+}
+
+@keyframes skeleton {
+  0% {
+    background-position: -100px 0;
+  }
+  100% {
+    background-position: 100% 0;
+  }
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

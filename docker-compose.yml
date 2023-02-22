@@ -1,0 +1,50 @@
+version: '3'
+
+services:
+  web:
+   build:
+    context: ./
+    dockerfile: ./docker/frontend/Dockerfile
+   ports:
+     - "80:80"
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_DATABASE: laravel
+      MYSQL_USER: laraveluser
+      MYSQL_PASSWORD: laravelpass
+      MYSQL_ROOT_PASSWORD: rootpass
+    volumes:
+      - dbdata:/var/lib/mysql
+  api:
+    build:
+      context: ./
+      dockerfile: ./docker/backend/Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - dbdata:/var/www/html
+    environment:
+      DB_CONNECTION: "mysql"
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_DATABASE: "laravel"
+      DB_USERNAME: "laraveluser"
+      DB_PASSWORD: "laravelpass"
+      WEBSITE_URL: http://everydayessentials.tech
+      API_URL: http://everydayessentials.tech:8000
+      
+  
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - "8888:80"
+    environment:
+      PMA_HOST: db
+      PMA_PMADB: laravel
+      PMA_USER: laraveluser
+      PMA_PASSWORD: laravelpass
+  
+  
+volumes:
+  dbdata:
