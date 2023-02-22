@@ -99,17 +99,3 @@ Route::group(['middleware' => ['checkRole:admin']], function () {
     Route::post("/admin/categories/delete", [CategoryController::class, 'deleteCategory']);
 });
 
-
-Route::get("/test", function () {
-
-    //  $order = Order::find(1);
-
-    $controller = new OrderController();
-    $controller->generateInvoice(null);
-    Mail::to('milosmarejka89@gmail.com')->send(new \App\Mail\OrderCreatedEmail(null, 'Milos Marejka', null));
-
-
-    return response()->json([
-        'message' => 'test'
-    ]);
-});
