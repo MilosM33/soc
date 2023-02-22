@@ -32,13 +32,15 @@ class PaymentController extends Controller
             'metadata' => ['order_id' => $order_id],
         ]);
 
+
+
         return response()->json($intent);
     }
 
     public function onPaymentSuccess(Request $request)
     {
-        $order_id = $request->input('order_id');
-        $order = Order::find($order_id);
+        $id = $request->input('data')['object']['metadata']['order_id'];
+        $order = Order::find($id);
         $order->status = "paid";
         $order->save();
 
