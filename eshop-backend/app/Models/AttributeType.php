@@ -11,4 +11,10 @@ class AttributeType extends Model
 
     protected $table = 'attribute_type';
     public $timestamps = false;
+
+    public $fillable = [
+        'name',
+        'description',
+
+    ];
 }

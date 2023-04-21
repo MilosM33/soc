@@ -37,13 +37,6 @@ export default function TrackOrder() {
       canClick: () => false,
       label: "Order Shipped",
     },
-    {
-      children: <AiFillCheckCircle></AiFillCheckCircle>,
-      step: 3,
-      completed: false,
-      canClick: () => false,
-      label: "Order Arrived",
-    },
   ]);
 
   const params = useParams();
@@ -106,8 +99,6 @@ export default function TrackOrder() {
                 className={"lg:w-2/3"}
               ></StatusBar>
               <div className="relative mt-16 w-1/2 mx-auto">
-    
-
                 <div>
                   {orderStatus.timeline.map((item: any) => (
                     <div className="my-5">

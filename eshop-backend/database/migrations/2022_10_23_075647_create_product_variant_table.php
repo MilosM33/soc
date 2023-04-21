@@ -17,9 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string("name");
             $table->bigInteger("product_id")->unsigned()->references("id")->on("product");
-            $table->string("sku");
             $table->float("price");
-            $table->integer('rating');
         });
     }
 

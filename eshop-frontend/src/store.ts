@@ -6,6 +6,7 @@ import { CategoryReducer } from "./Reducers/Category/CategoryReducer";
 import { WishlistReducer } from "./Reducers/Wishlist/WishlistReducer";
 import applyMiddleware from "redux-thunk";
 import thunkMiddleware from "redux-thunk";
+import HamburgerReducer from "./Reducers/Hamburger/HamburgerReducer";
 
 const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ const store = configureStore({
     user: UserReducer,
     categories: CategoryReducer,
     wishlist: WishlistReducer,
+    hamburger: HamburgerReducer,
   },
   middleware: [thunkMiddleware],
 });

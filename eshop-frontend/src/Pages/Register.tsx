@@ -9,9 +9,11 @@ import { toast } from "react-toastify";
 import { login } from "../Reducers/User/UserReducer";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 export default function Register() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [error, setError] = useState<string | null>(null);
   const { values, handleChange, handleSubmit, touched, handleBlur, errors } =
     useFormik({
       initialValues: {
@@ -26,11 +28,16 @@ export default function Register() {
       onSubmit: (values) => {
         User.register({
           ...values,
-        }).then((response) => {
-          toast.success("Successfully registered");
-          navigate("/my-account/verify");
-          dispatch(login(response.data));
-        });
+        })
+          .then((response) => {
+            toast.success("Successfully registered");
+            navigate("/my-account/verify");
+            dispatch(login(response.data));
+            setError(null);
+          })
+          .catch((error) => {
+            setError(error.response.data.message);
+          });
       },
     });
   return (
@@ -45,6 +52,8 @@ export default function Register() {
         <h3 className="text-lg text-gray-500 mb-4">
           Also you can track your orders, save your favorite products and much
         </h3>
+
+        <h2 className="text-red-400 text-lg my-3">{error}</h2>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <section className="flex gap-4 justify-between">
             <TextInput
@@ -116,10 +125,11 @@ export default function Register() {
             type="password"
           ></TextInput>
 
-          <div className="flex justify-start"></div>
-          <Button type="submit" variant="primary">
-            Create Account
-          </Button>
+          <div className="w-full md:w-64">
+            <Button type="submit" variant="primary">
+              Create Account
+            </Button>
+          </div>
         </form>
       </section>
     </Layout>

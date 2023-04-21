@@ -2,8 +2,11 @@ import React from "react";
 import { createBrowserRouter, RouterProvider, Link } from "react-router-dom";
 import About from "../Pages/About";
 import Admin from "../Pages/Admin/Admin";
+import AdminAttributes from "../Pages/Admin/AdminAttributes";
 import AdminCategories from "../Pages/Admin/AdminCategories";
+import AdminFilters from "../Pages/Admin/AdminFilters";
 import AdminOrders from "../Pages/Admin/AdminOrders";
+import AdminProducts from "../Pages/Admin/AdminProducts";
 import AdminUsers from "../Pages/Admin/AdminUsers";
 import CategoryPage from "../Pages/CategoryPage";
 import Checkout from "../Pages/Checkout/Checkout";
@@ -22,165 +25,175 @@ import Register from "../Pages/Register";
 import TrackOrder from "../Pages/TrackOrder";
 import VerifyAccount from "../Pages/VerifyAccount";
 import Whislist from "../Pages/Whislist";
+import AdminBlog from "../Pages/Admin/AdminBlog";
+import BlogPreview from "../Components/Blog/BlogPreview";
 const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <MainPage />,
-  },
-  {
-    path: "/products/:slug",
-    element: <Preview />,
-  },
-  {
-    path: "/product/:slug",
-    element: <Preview />,
-  },
-  {
-    path: "/category/product/:slug",
-    element: <Preview />,
-  },
-  {
-    path: "/category/:category_slug/product/:slug",
-    element: <Preview />,
-  },
-  {
-    path: "/category/:category_slug/:subcategory_slug/product/:slug",
-    element: <Preview />,
-  },
+	{
+		path: "/",
+		element: <MainPage />,
+	},
+	{
+		path: "/products/:slug",
+		element: <Preview />,
+	},
+	{
+		path: "/product/:slug",
+		element: <Preview />,
+	},
+	{
+		path: "/category/product/:slug",
+		element: <Preview />,
+	},
+	{
+		path: "/category/:category_slug/product/:slug",
+		element: <Preview />,
+	},
+	{
+		path: "/category/:category_slug/:subcategory_slug/product/:slug",
+		element: <Preview />,
+	},
 
-  {
-    path: "/checkout",
-    element: <Checkout />,
+	{
+		path: "/checkout",
+		element: <Checkout />,
 
-    children: [
-      {
-        path: "cart",
-        element: <CheckoutCart />,
-      },
-      {
-        path: "shipping",
-        element: <ShippingForm />,
-      },
-      {
-        path: "choose-payment",
-        element: <Payment></Payment>,
-      },
+		children: [
+			{
+				path: "cart",
+				element: <CheckoutCart />,
+			},
+			{
+				path: "shipping",
+				element: <ShippingForm />,
+			},
+			{
+				path: "choose-payment",
+				element: <Payment></Payment>,
+			},
 
-      {
-        path: "review",
-        element: <Review />,
-      },
-      {
-        path: "pay",
-        element: <CompletePayment />,
-      },
-    ],
-  },
-  {
-    path: "/order-complete/:some",
-    element: <OrderComplete />,
-  },
-  {
-    path: "/order-complete",
-    element: <OrderComplete />,
-  },
-  {
-    path: "/register",
-    element: <Register />,
-  },
+			{
+				path: "review",
+				element: <Review />,
+			},
+			{
+				path: "pay",
+				element: <CompletePayment />,
+			},
+		],
+	},
+	{
+		path: "/order-complete/:some",
+		element: <OrderComplete />,
+	},
+	{
+		path: "/order-complete",
+		element: <OrderComplete />,
+	},
+	{
+		path: "/register",
+		element: <Register />,
+	},
 
-  {
-    path: "/category",
+	{
+		path: "/category",
 
-    element: <CategoryPage />,
-    handle: {
-      crumb: (data: any) => <Link to="/category">Category</Link>,
-    },
-    children: [
-      {
-        path: ":category_slug",
-        element: <CategoryPage />,
-        children: [
-          {
-            path: ":subcategory_slug",
-            element: <CategoryPage />,
-          },
-        ],
-      },
-    ],
-  },
-  {
-    path: "/about",
-    element: <About />,
-  },
-  {
-    path: "/wishlist",
-    element: <Whislist></Whislist>,
-  },
-  { path: "/wishlist/product/:slug", element: <Preview /> },
-  {
-    path: "track-order",
-    element: <TrackOrder />,
-  },
-  {
-    path: "track-order/:orderNumber",
-    element: <TrackOrder />,
-  },
-  {
-    path: "orders",
-    element: <Orders />,
-  },
-  {
-    path: "orders/:orderNumber",
-    element: <Orders />,
-  },
-  {
-    path: "my-account",
-    element: <MyAccount />,
-  },
-  {
-    path: "my-account/verify",
-    element: <VerifyAccount />,
-  },
-  {
-    path: "my-account/verify/:token",
-    element: <VerifyAccount />,
-  },
-  {
-    path: "admin",
-    element: <Admin />,
-    children: [
-      {
-        path: "users",
-        element: <AdminUsers />,
-      },
-      {
-        path: "products",
-        element: <div>hi</div>,
-      },
-      {
-        path: "orders",
-        element: <AdminOrders />,
-      },
-      {
-        path: "categories",
-        element: <AdminCategories />,
-      },
-      {
-        path: "products",
-        element: <div>hi</div>,
-      },
-      {
-        path: "settings",
-        element: <div>hi</div>,
-      },
-    ],
-  },
-  {
-    path: "*",
-    element: <NotFound />,
-  },
+		element: <CategoryPage />,
+		handle: {
+			crumb: (data: any) => <Link to="/category">Category</Link>,
+		},
+		children: [
+			{
+				path: ":category_slug",
+				element: <CategoryPage />,
+				children: [
+					{
+						path: ":subcategory_slug",
+						element: <CategoryPage />,
+					},
+				],
+			},
+		],
+	},
+	{
+		path: "/about",
+		element: <About />,
+	},
+	{
+		path: "/wishlist",
+		element: <Whislist></Whislist>,
+	},
+	{ path: "/wishlist/product/:slug", element: <Preview /> },
+	{
+		path: "track-order",
+		element: <TrackOrder />,
+	},
+	{
+		path: "track-order/:orderNumber",
+		element: <TrackOrder />,
+	},
+	{
+		path: "orders",
+		element: <Orders />,
+	},
+	{
+		path: "orders/:orderNumber",
+		element: <Orders />,
+	},
+	{
+		path: "my-account",
+		element: <MyAccount />,
+	},
+	{
+		path: "my-account/verify",
+		element: <VerifyAccount />,
+	},
+	{
+		path: "my-account/verify/:token",
+		element: <VerifyAccount />,
+	},
+	{
+		path: "admin",
+		element: <Admin />,
+		children: [
+			{
+				path: "users",
+				element: <AdminUsers />,
+			},
+			{
+				path: "orders",
+				element: <AdminOrders />,
+			},
+			{
+				path: "categories",
+				element: <AdminCategories />,
+			},
+			{
+				path: "products",
+				element: <AdminProducts></AdminProducts>,
+			},
+			{
+				path: "attributes",
+				element: <AdminAttributes></AdminAttributes>,
+			},
+			{
+				path: "filters",
+				element: <AdminFilters></AdminFilters>,
+			},
+			{
+				path: "blog",
+				element: <AdminBlog></AdminBlog>,
+			},
+		],
+	},
+	{
+		path: "blog/:title",
+		element: <BlogPreview />,
+	},
+	{
+		path: "*",
+		element: <NotFound />,
+	},
 ]);
 export default function Router() {
-  return <RouterProvider router={router} />;
+	return <RouterProvider router={router} />;
 }

@@ -70,7 +70,7 @@ export default function AdminEditOrders({
     >
       <div className="w-72">
         <Select
-          options={["pending", "processing", "shipped", "delivered"]}
+          options={["pending", "processing", "shipped"]}
           selected={orderStatus}
           onChange={(e: any) => setOrderStatus(e.target.value)}
         ></Select>

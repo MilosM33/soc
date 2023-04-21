@@ -12,6 +12,12 @@ class ProductVariant extends Model
     protected $table = 'product_variant';
     protected $hidden = ['product_id', 'sku'];
 
+    public $fillable = [
+        'name',
+        'price',
+        'product_id',
+    ];
+
     public function product()
     {
         return $this->belongsTo(Product::class);

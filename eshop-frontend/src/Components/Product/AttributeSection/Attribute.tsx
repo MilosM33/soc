@@ -4,6 +4,8 @@ export default function Attribute({
 }: {
   attribute: IProductAttribute;
 }) {
+
+
   return (
     <div className="flex justify-between ">
       <div className="group relative">

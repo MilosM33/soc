@@ -174,8 +174,8 @@ class AuthController extends Controller
         if ($request->has('role') && $request->role != '') {
             $users->where('role', $request->role);
         }
-        if ($request->has('created_at') && $request->created_at != '') {
-            $users->where('created_at', 'like', '%' . $request->created_at . '%');
+        if ($request->has('verified_at') && $request->created_at != '') {
+            $users->where('email_verified_at', 'like', '%' . $request->created_at . '%');
         }
 
 
@@ -234,6 +234,8 @@ class AuthController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+
+        Mail::to($user->email)->queue(new \App\Mail\UserRegistred($user));
 
         return response()->json([
             'status' => 'success',

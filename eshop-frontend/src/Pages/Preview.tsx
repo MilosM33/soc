@@ -183,11 +183,7 @@ export default function Preview() {
           </section>
         </section>
 
-        <section>
-          {/*
-            HTML SECTION
-          */}
-        </section>
+        <section></section>
         <section className="mb-8">
           {status === "loading" &&
             Array.from(Array(10).keys()).map((key) => (
@@ -195,7 +191,12 @@ export default function Preview() {
             ))}
           {status === "success" && (
             <AttributeSection
-              attributes={product?.selectedVariant.attributes ?? []}
+              attributes={
+                [
+                  ...(product?.selectedVariant.attributes ?? []),
+                  ...(product?.attributes ?? []),
+                ] ?? []
+              }
             ></AttributeSection>
           )}
         </section>
@@ -203,6 +204,16 @@ export default function Preview() {
           <ReviewSection
             reviews={product?.selectedVariant.reviews ?? []}
             variantId={product?.selectedVariant.id ?? 0}
+            setReviews={(reviews) => {
+              if (product == null) return;
+              setProduct({
+                ...product,
+                selectedVariant: {
+                  ...product.selectedVariant,
+                  reviews,
+                },
+              });
+            }}
           ></ReviewSection>
         )}
         {status == "loading" &&

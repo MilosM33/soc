@@ -31,7 +31,7 @@ services:
       DB_DATABASE: "laravel"
       DB_USERNAME: "laraveluser"
       DB_PASSWORD: "laravelpass"
-      WEBSITE_URL: http://everydayessentials.tech
+      WEBSITE_URL: http://everydayessentials.tech/
       API_URL: http://everydayessentials.tech:8000
       
   

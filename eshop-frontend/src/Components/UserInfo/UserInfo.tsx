@@ -32,19 +32,25 @@ export default function UserInfo() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    User.me().then((res) => {
-      if (res.data) {
-        dispatch(setUserData({ ...res.data, isAuth: true }));
+    User.me()
+      .then((res) => {
+        if (res.data) {
+          dispatch(setUserData({ ...res.data, isAuth: true }));
 
-        const verified = res.data.user.email_verified_at
-        if (
-          (verified === undefined || verified === null) &&
-          location.pathname.indexOf("verify") === -1
-        ) {
-          return navigate("/my-account/verify");
+          const verified = res.data.user.email_verified_at;
+          if (
+            (verified === undefined || verified === null) &&
+            location.pathname.indexOf("verify") === -1
+          ) {
+            return navigate("/my-account/verify");
+          }
         }
-      }
-    });
+      })
+      .catch((err) => {
+        if (err.response.status === 401) {
+          dispatch(setUserData({ isAuth: false }));
+        }
+      });
   }, []);
 
   return (
@@ -84,7 +90,7 @@ function UserNavigation() {
         <AiOutlineClockCircle className="inline mx-2" />
         Track orders
       </NavLink>
-      {user.role === "admin" && (
+      {user.role !== "user" && (
         <NavLink to="/admin" className="">
           <AiOutlineDashboard className="inline mx-2" />
           Admin

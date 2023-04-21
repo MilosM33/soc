@@ -28,6 +28,8 @@ export default function SearchInput({
 
   const [text, setText] = useState<string>(value || "");
 
+  const [selected, setSelected] = useState<any>(null);
+
   function searchTerm(e: any) {
     setText(e.target.value);
     const apiCall = debounce(() => {

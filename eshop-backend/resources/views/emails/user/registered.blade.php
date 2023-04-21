@@ -14,7 +14,7 @@
             address:
         </p>
 
-        <p><a href="http://everydayessentials.tech/my-account/verify/{{$user->verification_token}}">Verify Email Address</a></p>
+        <p><a href="{{config('app.WEBSITE_URL')}}/my-account/verify/{{$user->verification_token}}">Verify Email Address</a></p>
 
         <p>Thank you for using our website!</p>
 

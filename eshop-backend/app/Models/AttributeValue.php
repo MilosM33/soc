@@ -12,4 +12,9 @@ class AttributeValue extends Model
 
     protected $table = 'attribute_value';
     public $timestamps = false;
+
+    public $fillable = [
+        'value',
+        'description',
+    ];
 }

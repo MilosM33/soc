@@ -1,4 +1,5 @@
 export default interface IProductAttribute {
+  id: number;
   type: {
     name: string;
     description: string;

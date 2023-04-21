@@ -7,7 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class AttributeFilter extends Model
 {
-    use HasFactory;
-    protected $table = 'attribute_filters';
-    public $timestamps = false;
+	use HasFactory;
+	protected $table = 'attribute_filters';
+	public $timestamps = false;
+
+
+	public function attributeType()
+	{
+		return $this->belongsTo(AttributeType::class);
+	}
 }
