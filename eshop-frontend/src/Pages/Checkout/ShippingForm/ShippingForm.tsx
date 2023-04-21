@@ -56,7 +56,10 @@ export default function ShippingForm(props: ShippingFormProps) {
 	useEffect(() => {
 		if (user.isAuth) {
 			User.getUserDetails().then((res) => {
-				setValues(res.data.userDetails);
+				setValues({
+					...res.data.userDetails,
+					...selector,
+				});
 			});
 		}
 	}, []);
