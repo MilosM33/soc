@@ -144,14 +144,13 @@ Route::post("/attributes/create", [AttributeController::class, 'createAttributes
 
 Route::get("/filters/search", [AttributeController::class, 'searchFilters']);
 
+Route::post("/order/create", [OrderController::class, 'create']);
+Route::get("/orders/get", [OrderController::class, 'getOrders']);
+Route::get("/orders/{orderNumber}", [OrderController::class, 'getOrderInfo']);
 
 Route::group(['middleware' => ['adminOrWarehouse']], function () {
 	Route::get("/admin/orders/getitems/{orderNumber}", [OrderController::class, 'getOrderItems']);
 	Route::post("/admin/orders/removeitem", [OrderController::class, 'removeOrderItem']);
 	Route::post("/admin/orders/update", [OrderController::class, 'updateOrder']);
 	Route::get("/admin/orders/search", [OrderController::class, 'searchOrders']);
-
-	Route::post("/order/create", [OrderController::class, 'create']);
-	Route::get("/orders/get", [OrderController::class, 'getOrders']);
-	Route::get("/orders/{orderNumber}", [OrderController::class, 'getOrderInfo']);
 });
