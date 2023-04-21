@@ -1,0 +1,576 @@
+{
+    "title": "iPhone 11 64 GB \u010dierny",
+    "description": "Mobiln\u00fd telef\u00f3n \u2013 6.1\" IPS 1792 \u00d7 828, procesor Apple A13 Bionic 6-jadrov\u00fd, RAM 4GB, intern\u00e1 pam\u00e4\u0165 64GB, zadn\u00fd fotoapar\u00e1t s optick\u00fdm zoomom 12Mpx (f/1.8)+12Mpx (f/2.4), predn\u00fd fotoapar\u00e1t 12Mpx, optick\u00e1 stabiliz\u00e1cia, GPS, Glonass, NFC, LTE, UWB, Lightning port, vodoodoln\u00fd pod\u013ea IP68, single SIM + eSIM, neblokovan\u00fd, r\u00fdchle nab\u00edjanie 18W, bezdr\u00f4tov\u00e9 nab\u00edjanie, bat\u00e9ria 3110mAh, iOS 13",
+    "details": [
+        {
+            "attribute": {
+                "attribute": "Uhloprie\u010dka displeja",
+                "info": ""
+            },
+            "value": {
+                "value": "6,1\"",
+                "info": ""
+            }
+        },
+        {
+            "attribute": {
+                "attribute": "Rozl\u00ed\u0161enie displeja",
+                "info": ""
+            },
+            "value": {
+                "value": "1792 \u00d7 828",
+                "info": ""
+            }
+        },
+        {
+            "attribute": {
+                "attribute": "Opera\u010dn\u00fd syst\u00e9m",
+                "info": ""
+            },
+            "value": {
+                "value": "iOS",
+                "info": ""
+            }
+        },
+        {
+            "attribute": {
+                "attribute": "Konfigur\u00e1cia kariet",
+                "info": ""
+            },
+            "value": {
+                "value": "Single SIM + eSIM",
+                "info": "Plastov\u00e9 SIM kart\u00e1m tu nebud\u00fa nav\u017edy. Bud\u00facnos\u0165ou sa zd\u00e1 by\u0165 technol\u00f3gia eSIM. Ide o samostatn\u00fd \u010dip zabudovan\u00fd do z\u00e1kladnej dosky telef\u00f3nu. \u010co v\u0161etko sa t\u00fdmto odklonom od plastov\u00fdch karti\u010diek zmen\u00ed? A m\u00e1 modern\u00e1 technol\u00f3gia eSIM nejak\u00e9 \u00faskalia?"
+            }
+        },
+        {
+            "attribute": {
+                "attribute": "Slot na pam\u00e4\u0165ov\u00fa kartu",
+                "info": ""
+            },
+            "value": {
+                "value": "Nie",
+                "info": ""
+            }
+        },
+        {
+            "attribute": {
+                "attribute": "Typ pam\u00e4\u0165ovej karty",
+                "info": ""
+            },
+            "value": {
+                "value": "Nem\u00e1",
+                "info": ""
+            }
+        },
+        {
+            "attribute": {
+                "attribute": "Rozl\u00ed\u0161enie zadnej kamery",
+                "info": ""
+            },
+            "value": {
+                "value": "12 Mpx",
+                "info": ""
+            }
+        },
+        {
+            "attribute": {
+                "attribute": "Rozl\u00ed\u0161enie prednej kamery",
+                "info": ""
+            },
+            "value": {
+                "value": "12 Mpx",
+                "info": ""
+            }
+        },
+        {
+            "attribute": {
+                "attribute": "Funkcie",
+                "info": ""
+            },
+            "value": {
+                "value": "R\u00fdchle nab\u00edjanie",
+                "info": "R\u00fdchle nab\u00edjanie je technol\u00f3gia, ktor\u00e1 umo\u017e\u0148uje telef\u00f3n nab\u00edja\u0165 efekt\u00edvnej\u0161ie. Zatia\u013e \u010do predt\u00fdm na nabitie na 100 % potreboval smartf\u00f3n tri hodiny, dnes sta\u010d\u00ed aj menej ako polovi\u010dn\u00e1 doba pri rovnakej ve\u013ekosti bat\u00e9rie."
+            }
+        },
+        {
+            "attribute": {
+                "attribute": "Rok predstavenia",
+                "info": ""
+            },
+            "value": {
+                "value": "2019",
+                "info": ""
+            }
+        },
+        {
+            "attribute": {
+                "attribute": "Typ",
+                "info": ""
+            },
+            "value": {
+                "value": "Dotykov\u00fd displej",
+                "info": ""
+            }
+        },
+        {
+            "attribute": {
+                "attribute": "Stupe\u0148 krytia",
+                "info": ""
+            },
+            "value": {
+                "value": "IP68",
+                "info": "IP68 ozna\u010duje stupe\u0148 krytia, kedy je zariadenie kompletne chr\u00e1nen\u00e9 proti prachu a z\u00e1rove\u0148 odol\u00e1 ponoreniu do vody po dobu dlh\u0161iu ako 30 min\u00fat, alebo v h\u013abke 1 meter. Presn\u00e9 podmienky si v\u0161ak ur\u010duje v\u00fdrobca."
+            }
+        },
+        {
+            "attribute": {
+                "attribute": "V\u00fd\u0161ka",
+                "info": ""
+            },
+            "value": {
+                "value": "150,9 mm",
+                "info": ""
+            }
+        },
+        {
+            "attribute": {
+                "attribute": "\u0160\u00edrka",
+                "info": ""
+            },
+            "value": {
+                "value": "75,7 mm",
+                "info": ""
+            }
+        },
+        {
+            "attribute": {
+                "attribute": "H\u013abka",
+                "info": ""
+            },
+            "value": {
+                "value": "8,3 mm",
+                "info": ""
+            }
+        },
+        {
+            "attribute": {
+                "attribute": "Hmotnos\u0165",
+                "info": ""
+            },
+            "value": {
+                "value": "194 g",
+                "info": ""
+            }
+        },
+        {
+            "attribute": {
+                "attribute": "Farba",
+                "info": ""
+            },
+            "value": {
+                "value": "\u010cierna",
+                "info": ""
+            }
+        },
+        {
+            "attribute": {
+                "attribute": "Uhloprie\u010dka displeja",
+                "info": ""
+            },
+            "value": {
+                "value": "6,1\" (15,49 cm)",
+                "info": ""
+            }
+        },
+        {
+            "attribute": {
+                "attribute": "Typ displeja",
+                "info": ""
+            },
+            "value": {
+                "value": "IPS",
+                "info": "IPS, \u010di\u017ee In-Plane Switching displej, \u010dasto ozna\u010dovan\u00fd aj ako Super TFT. Ide o jednu z odno\u017e\u00ed zobrazovac\u00edch technol\u00f3gi\u00ed LCD. Predstavuje vynikaj\u00faci pomer kvality a ceny. Vynik\u00e1 prirodzen\u00fdm podan\u00edm farieb, n\u00edzkou spotrebou a \u0161irok\u00fdm pozorovac\u00edm uhlom. Ten dosahuje takmer 180 stup\u0148ov. Na displej je preto dobre vidie\u0165 zo v\u0161etk\u00fdch str\u00e1n, zatia\u013e \u010do odtie\u0148 farieb zost\u00e1va nezmenen\u00fd."
+            }
+        },
+        {
+            "attribute": {
+                "attribute": "Jemnos\u0165 displeja",
+                "info": ""
+            },
+            "value": {
+                "value": "326 PPI",
+                "info": ""
+            }
+        },
+        {
+            "attribute": {
+                "attribute": "Tvar v\u00fdrezu v displeji",
+                "info": ""
+            },
+            "value": {
+                "value": "Obd\u013a\u017enik",
+                "info": ""
+            }
+        },
+        {
+            "attribute": {
+                "attribute": "Pomer ve\u013ekosti displeja k telu",
+                "info": ""
+            },
+            "value": {
+                "value": "79 %",
+                "info": ""
+            }
+        },
+        {
+            "attribute": {
+                "attribute": "Typ fotoapar\u00e1tu",
+                "info": ""
+            },
+            "value": {
+                "value": "\u0160irokouhl\u00fd",
+                "info": "\u0160irokouhl\u00fd objekt\u00edv umo\u017e\u0148uje zariadeniu foti\u0165 v \u0161ir\u0161om uhle, ne\u017e umo\u017e\u0148uje prim\u00e1rny objekt\u00edv telef\u00f3nu. Do z\u00e1beru sa v\u00e1m tak vojd\u00fa veci, kv\u00f4li ktor\u00fdm by ste inak museli o nieko\u013eko krokov ust\u00fapi\u0165, \u010do napr. v interi\u00e9roch nie je mo\u017en\u00e9."
+            }
+        },
+        {
+            "attribute": {
+                "attribute": "Po\u010det objekt\u00edvov zadn\u00e9ho fotoapar\u00e1tu",
+                "info": ""
+            },
+            "value": {
+                "value": "2 \u00d7",
+                "info": ""
+            }
+        },
+        {
+            "attribute": {
+                "attribute": "Po\u010det objekt\u00edvov predn\u00e9ho fotoapar\u00e1tu",
+                "info": ""
+            },
+            "value": {
+                "value": "1 \u00d7",
+                "info": ""
+            }
+        },
+        {
+            "attribute": {
+                "attribute": "Rozl\u00ed\u0161enie hlavn\u00e9ho zadn\u00e9ho fotoapar\u00e1tu",
+                "info": ""
+            },
+            "value": {
+                "value": "12 Mpx",
+                "info": ""
+            }
+        },
+        {
+            "attribute": {
+                "attribute": "Svetelnos\u0165 zadn\u00e9ho fotoapar\u00e1tu",
+                "info": ""
+            },
+            "value": {
+                "value": "f/1,8",
+                "info": ""
+            }
+        },
+        {
+            "attribute": {
+                "attribute": "Rozl\u00ed\u0161enie \u0161irokouhl\u00e9ho fotoapar\u00e1tu",
+                "info": ""
+            },
+            "value": {
+                "value": "12 Mpx",
+                "info": ""
+            }
+        },
+        {
+            "attribute": {
+                "attribute": "Svetelnos\u0165 \u0161irokouhl\u00e9ho fotoapar\u00e1tu",
+                "info": ""
+            },
+            "value": {
+                "value": "f/2,4",
+                "info": ""
+            }
+        },
+        {
+            "attribute": {
+                "attribute": "Rozl\u00ed\u0161enie predn\u00e9ho fotoapar\u00e1tu",
+                "info": ""
+            },
+            "value": {
+                "value": "12 Mpx",
+                "info": ""
+            }
+        },
+        {
+            "attribute": {
+                "attribute": "Svetelnos\u0165 predn\u00e9ho fotoapar\u00e1tu",
+                "info": ""
+            },
+            "value": {
+                "value": "f/2,2",
+                "info": ""
+            }
+        },
+        {
+            "attribute": {
+                "attribute": "Maxim\u00e1lna svetelnos\u0165",
+                "info": ""
+            },
+            "value": {
+                "value": "f/1,8",
+                "info": ""
+            }
+        },
+        {
+            "attribute": {
+                "attribute": "Stabiliz\u00e1cia obrazu",
+                "info": ""
+            },
+            "value": {
+                "value": "Optick\u00e1",
+                "info": "Optick\u00e1 stabiliz\u00e1cia je mechanizmus vn\u00fatri objekt\u00edvu, ktor\u00fd eliminuje vplyv chvenia fotoapar\u00e1tu/objekt\u00edvu na zaznamen\u00e1van\u00fd obraz. Deje sa tak pohybom optick\u00e9ho \u010dlena vn\u00fatri objekt\u00edvu. \u010casto sa skr\u00e1tene ud\u00e1va ako OIS (Optical Image Stabilizer). Zmier\u0148uje vplyv chvenia pr\u00edstroja a t\u00fdm aj rozmazanie sn\u00edmky napr. pri dlh\u00fdch \u010dasoch uz\u00e1vierky alebo pri objekt\u00edvoch s dlhou ohniskovou vzdialenos\u0165ou."
+            }
+        },
+        {
+            "attribute": {
+                "attribute": "Optick\u00fd zoom",
+                "info": ""
+            },
+            "value": {
+                "value": "2\u00d7",
+                "info": ""
+            }
+        },
+        {
+            "attribute": {
+                "attribute": "Maxim\u00e1lne rozl\u00ed\u0161enie videa",
+                "info": ""
+            },
+            "value": {
+                "value": "3840 \u00d7 2160 (4K Ultra HD)",
+                "info": ""
+            }
+        },
+        {
+            "attribute": {
+                "attribute": "Podporovan\u00e9 rozl\u00ed\u0161enie videa",
+                "info": ""
+            },
+            "value": {
+                "value": "2160p 60fps, 2160p 30fps, 2160p 24fps, 1080p 60fps, 1080p 30fps, 1080p 120fps, 1080p 240fps",
+                "info": ""
+            }
+        },
+        {
+            "attribute": {
+                "attribute": "Funkcie fotoapar\u00e1tu",
+                "info": ""
+            },
+            "value": {
+                "value": "Optick\u00fd zoom",
+                "info": "Optick\u00fd zoom je schopnos\u0165 objekt\u00edvu pribl\u00ed\u017ei\u0165 sn\u00edman\u00fa sc\u00e9nu zmenou ohniskovej vzdialenosti. To je umo\u017enen\u00e9 preskupovan\u00edm \u0161o\u0161oviek objekt\u00edvu (alebo zmenou pou\u017eit\u00e9ho objekt\u00edvu pri telef\u00f3noch) a t\u00fdm p\u00e1dom zmenou ohniskovej vzdialenosti. V\u010faka zoomu je mo\u017en\u00e9 sn\u00edma\u0165 detaily, ktor\u00e9 s\u00fa \u013eudsk\u00fdm okom \u0165a\u017eko pozorovate\u013en\u00e9. Na rozdiel od digit\u00e1lneho zoomu pri optickom nedoch\u00e1dza k zn\u00ed\u017eeniu kvality sn\u00edmky."
+            }
+        },
+        {
+            "attribute": {
+                "attribute": "Zaostrovanie",
+                "info": ""
+            },
+            "value": {
+                "value": "Ostrenie detekciou f\u00e1zov\u00e9ho posunu (PDAF)",
+                "info": "PDAF ostrenie, \u010di\u017ee ostrenie pomocou f\u00e1zovej detekcie sc\u00e9ny (Phase Detection Auto Focus), pom\u00e1ha pri foten\u00ed pohybuj\u00facich sa objektov, kedy je svetlo, ktor\u00e9 sa odr\u00e1\u017ea od foten\u00e9ho objektu, rozdelen\u00e9 na dva pr\u00fady svetla. Fotoapar\u00e1t ostr\u00ed tak dlho, k\u00fdm nem\u00e1 vlnenie oboch l\u00fa\u010dov s\u00fahlasn\u00fa f\u00e1zu."
+            }
+        },
+        {
+            "attribute": {
+                "attribute": "Kapacita bat\u00e9rie",
+                "info": ""
+            },
+            "value": {
+                "value": "3\u00a0110 mAh",
+                "info": ""
+            }
+        },
+        {
+            "attribute": {
+                "attribute": "Pou\u017e\u00edvate\u013esky vymenite\u013en\u00e1 bat\u00e9ria",
+                "info": ""
+            },
+            "value": {
+                "value": "Vstavan\u00e1 bat\u00e9ria",
+                "info": ""
+            }
+        },
+        {
+            "attribute": {
+                "attribute": "Max. v\u00fdkon dr\u00f4tov\u00e9ho nab\u00edjania",
+                "info": ""
+            },
+            "value": {
+                "value": "18 W",
+                "info": ""
+            }
+        },
+        {
+            "attribute": {
+                "attribute": "Doba nab\u00edjania na 50 %",
+                "info": ""
+            },
+            "value": {
+                "value": "1\u00a0800 s",
+                "info": ""
+            }
+        },
+        {
+            "attribute": {
+                "attribute": "Opera\u010dn\u00e1 pam\u00e4\u0165",
+                "info": ""
+            },
+            "value": {
+                "value": "4 GB",
+                "info": ""
+            }
+        },
+        {
+            "attribute": {
+                "attribute": "Vn\u00fatorn\u00e1 pam\u00e4\u0165",
+                "info": ""
+            },
+            "value": {
+                "value": "64 GB",
+                "info": ""
+            }
+        },
+        {
+            "attribute": {
+                "attribute": "Zna\u010dka procesora",
+                "info": ""
+            },
+            "value": {
+                "value": "Apple",
+                "info": ""
+            }
+        },
+        {
+            "attribute": {
+                "attribute": "Po\u010det jadier procesora",
+                "info": ""
+            },
+            "value": {
+                "value": "6 \u00d7",
+                "info": ""
+            }
+        },
+        {
+            "attribute": {
+                "attribute": "Frekvencia procesora",
+                "info": ""
+            },
+            "value": {
+                "value": "2,65 GHz (2\u00a0650 MHz)",
+                "info": ""
+            }
+        },
+        {
+            "attribute": {
+                "attribute": "Ozna\u010denie procesora",
+                "info": ""
+            },
+            "value": {
+                "value": "Apple A13 Bionic",
+                "info": ""
+            }
+        },
+        {
+            "attribute": {
+                "attribute": "Konektory",
+                "info": ""
+            },
+            "value": {
+                "value": "Lightning port",
+                "info": ""
+            }
+        },
+        {
+            "attribute": {
+                "attribute": "Bezdr\u00f4tov\u00e9 technol\u00f3gie",
+                "info": ""
+            },
+            "value": {
+                "value": "NFC",
+                "info": "NFC (Near Field Communication) je bezdr\u00f4tov\u00e1 komunik\u00e1cia pou\u017e\u00edvan\u00e1 na obnovenie spojenia medzi prenosn\u00fdmi zariadeniami, a to na ve\u013emi kr\u00e1tku vzdialenos\u0165 (do 4 cm). Predt\u00fdm sa NFC pou\u017e\u00edvalo na prenos fotiek a vide\u00ed, v s\u00fa\u010dasnosti sa o nej \u010dastej\u0161ie hovor\u00ed v spojen\u00ed s bezkontaktn\u00fdmi platbami."
+            }
+        },
+        {
+            "attribute": {
+                "attribute": "D\u00e1tov\u00e9 slu\u017eby",
+                "info": ""
+            },
+            "value": {
+                "value": "LTE (4G), HSPA (3.5G), UMTS/CDMA (3G)",
+                "info": ""
+            }
+        },
+        {
+            "attribute": {
+                "attribute": "Senzory",
+                "info": ""
+            },
+            "value": {
+                "value": "Digit\u00e1lny kompas (magnetick\u00fd senzor)",
+                "info": "Digit\u00e1lny kompas (magnetick\u00fd senzor) detekuje magnetick\u00e9 pole zeme na ur\u010denie svetov\u00fdch str\u00e1n. V\u010faka nemu telef\u00f3n dok\u00e1\u017ee napr\u00edklad spr\u00e1vne oto\u010di\u0165 mapu, aby zodpovedala va\u0161ej orient\u00e1cii."
+            }
+        },
+        {
+            "attribute": {
+                "attribute": "Typ hlavnej SIM karty",
+                "info": ""
+            },
+            "value": {
+                "value": "Nano SIM",
+                "info": ""
+            }
+        },
+        {
+            "attribute": {
+                "attribute": "Volanie cez internet",
+                "info": ""
+            },
+            "value": {
+                "value": "VoLTE",
+                "info": ""
+            }
+        },
+        {
+            "attribute": {
+                "attribute": "Frekvencia LTE",
+                "info": ""
+            },
+            "value": {
+                "value": "2600 MHz, 2100 MHz, 1900 MHz, 1800 MHz, 900 MHz, 800 MHz",
+                "info": ""
+            }
+        },
+        {
+            "attribute": {
+                "attribute": "Pr\u00edslu\u0161enstvo v balen\u00ed",
+                "info": ""
+            },
+            "value": {
+                "value": "Bez nab\u00edjacieho adapt\u00e9ra (nutn\u00e9 dok\u00fapi\u0165 zvl\u00e1\u0161\u0165), Nab\u00edjac\u00ed k\u00e1bel",
+                "info": ""
+            }
+        },
+        {
+            "attribute": {
+                "attribute": "Verzia opera\u010dn\u00e9ho syst\u00e9mu",
+                "info": ""
+            },
+            "value": {
+                "value": "iOS 13",
+                "info": ""
+            }
+        }
+    ]
+}
