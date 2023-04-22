@@ -7,6 +7,7 @@ import Modal from "../../Components/Modal/Modal";
 import ReactQuill from "react-quill";
 import { ImageApi } from "../../Api/ImageApi/ImageApi";
 import { toast } from "react-toastify";
+import React from "react";
 
 export default function AdminBlog() {
 	const [search, setSearch] = useState({
@@ -50,7 +51,14 @@ export default function AdminBlog() {
 			toast.success("Blog created");
 		});
 	}
-	function onEditBlog(row: any) {}
+	function onEditBlog(row: any) {
+		BlogApi.updateBlog(row).then((res) => {
+			onSearch(search);
+
+			setSelectedRow(null);
+			toast.success("Blog updated");
+		});
+	}
 
 	function onRemoveBlog(row: any) {
 		BlogApi.removeBlog({
@@ -62,6 +70,27 @@ export default function AdminBlog() {
 			toast.success("Blog removed");
 		});
 	}
+
+	const modules = React.useMemo(
+		() => ({
+			toolbar: {
+				container: [
+					[{ header: "1" }, { header: "2" }, { font: [] }],
+					[{ size: [] }],
+					["bold", "italic", "underline", "strike", "blockquote"],
+					[
+						{ list: "ordered" },
+						{ list: "bullet" },
+						{ indent: "-1" },
+						{ indent: "+1" },
+					],
+					["link", "image"],
+					["clean"],
+				],
+			},
+		}),
+		[]
+	);
 
 	useEffect(() => {
 		onSearch(search);
@@ -77,7 +106,7 @@ export default function AdminBlog() {
 						setCreateBlog(null);
 					}}
 				>
-					<div className="w-96  overflow-hidden">
+					<div className="w-96 overflow-hidden">
 						<TextInput
 							placeholder="Blog title"
 							onChange={(e: any) => {
@@ -120,58 +149,18 @@ export default function AdminBlog() {
 							ref={(el) => {
 								quillObj1 = el;
 							}}
-							modules={{
-								toolbar: {
-									container: [
-										[{ header: "1" }, { header: "2" }, { font: [] }],
-										[{ size: [] }],
-										["bold", "italic", "underline", "strike", "blockquote"],
-										[
-											{ list: "ordered" },
-											{ list: "bullet" },
-											{ indent: "-1" },
-											{ indent: "+1" },
-										],
-										["link", "image"],
-										["clean"],
-									],
-									handlers: {
-										image: async (file: any) => {
-											const input = document.createElement("input");
-											input.setAttribute("type", "file");
-											input.setAttribute("accept", "image/*");
-											input.click();
-
-											input.onchange = async () => {
-												if (input == null || input.files == null) return;
-
-												var file: any = input.files[0];
-												var formData = new FormData();
-
-												formData.append("file", file);
-
-												ImageApi.uploadImage(formData)
-													.then((res) => {
-														const url = res.data.url;
-														const range = quillObj1.getEditorSelection();
-														quillObj1
-															.getEditor()
-															.insertEmbed(range.index, "image", url);
-													})
-													.catch((e) => {
-														toast.error("Failed to upload image, try again");
-													});
-											};
-										},
-									},
-								},
-							}}
+							modules={modules}
 							style={{
 								height: 350,
 								overflow: "hidden",
 							}}
 							onChange={(data: any) => {
 								console.log(data);
+
+								setCreateBlog({
+									...createBlog,
+									content: data,
+								});
 							}}
 						></ReactQuill>
 
@@ -191,12 +180,22 @@ export default function AdminBlog() {
 						<TextInput
 							placeholder="Blog title"
 							value={selectedRow.title}
-							onChange={(value: any) => {}}
+							onChange={(e: any) => {
+								setSelectedRow({
+									...selectedRow,
+									title: e.target.value,
+								});
+							}}
 						></TextInput>
 						<TextInput
 							placeholder="Short text"
 							value={selectedRow.short_text}
-							onChange={(value: any) => {}}
+							onChange={(e: any) => {
+								setSelectedRow({
+									...selectedRow,
+									short_text: e.target.value,
+								});
+							}}
 						></TextInput>
 						<div className="my-3">
 							<p>Image cover</p>
@@ -205,65 +204,31 @@ export default function AdminBlog() {
 
 						<ReactQuill
 							ref={(el) => {
-								quillObj = el;
+								quillObj1 = el;
 							}}
-							modules={{
-								toolbar: {
-									container: [
-										[{ header: "1" }, { header: "2" }, { font: [] }],
-										[{ size: [] }],
-										["bold", "italic", "underline", "strike", "blockquote"],
-										[
-											{ list: "ordered" },
-											{ list: "bullet" },
-											{ indent: "-1" },
-											{ indent: "+1" },
-										],
-										["link", "image"],
-										["clean"],
-									],
-									handlers: {
-										image: (file: any) => {
-											const input = document.createElement("input");
-											input.setAttribute("type", "file");
-											input.setAttribute("accept", "image/*");
-											input.click();
-
-											input.onchange = async () => {
-												if (input == null || input.files == null) return;
-
-												var file: any = input.files[0];
-												var formData = new FormData();
-
-												formData.append("file", file);
-
-												ImageApi.uploadImage(formData)
-													.then((res) => {
-														const url = res.data.url;
-														const range = quillObj.getEditorSelection();
-														quillObj
-															.getEditor()
-															.insertEmbed(range.index, "image", url);
-													})
-													.catch((e) => {
-														toast.error("Failed to upload image, try again");
-													});
-											};
-										},
-									},
-								},
-							}}
+							modules={modules}
 							style={{
 								height: 350,
 								overflow: "hidden",
 							}}
+							value={selectedRow.content}
 							onChange={(data: any) => {
-								console.log(data);
+								setSelectedRow({
+									...selectedRow,
+									content: data,
+								});
 							}}
 						></ReactQuill>
 
-						<Button onClick={() => onEditBlog(selectedRow)}>Update</Button>
-						<Button onClick={() => onRemoveBlog(selectedRow)}>Remove</Button>
+						<Button onClick={() => onEditBlog(selectedRow)} className="mx-2">
+							Update
+						</Button>
+						<Button
+							onClick={() => onRemoveBlog(selectedRow)}
+							variant="secondary"
+						>
+							Remove
+						</Button>
 					</div>
 				</Modal>
 			)}

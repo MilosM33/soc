@@ -42,5 +42,7 @@ export const Product = {
 
 	createProduct: (data: any) => post("/admin/products/create", data),
 
+	createVariant: (data: any) => post("/admin/productsvariant/create", data),
+
 	deleteCategory: (data: any) => post("/admin/products/category", data),
 };

@@ -429,6 +429,20 @@ class ProductController extends Controller
 		], 200);
 	}
 
+	public function createVariant(Request $request)
+	{
+
+		$productId = $request->input("productId");
+		$productVariant = ProductVariant::create([
+			"name" => "New Variant",
+			"price" => 0,
+			"product_id" => $productId,
+
+		]);
+
+		return response()->json($productVariant);
+	}
+
 	public function deleteSimilar(Request $request)
 	{
 		$slug = $request->slug;
@@ -468,7 +482,7 @@ class ProductController extends Controller
 			"title" => $request->title,
 			"description" => $request->description,
 			"slug" => $request->slug,
-			"is_active" => $request->is_active ?? 1,
+			"is_active" => $request->is_active ?? 0,
 		));
 
 		// attributes

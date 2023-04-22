@@ -95,6 +95,8 @@ Route::group(['middleware' => ['checkRole:admin']], function () {
 
 	Route::get("/admin/products/filter", [ProductController::class, 'filterProducts']);
 
+	Route::post("/admin/productsvariant/create", [ProductController::class, 'createVariant']);
+
 	Route::get("/products/{slug}/variants", [ProductController::class, 'getVariants']);
 	Route::post("/admin/products/deletevariant", [ProductController::class, 'deleteVariant']);
 
@@ -143,6 +145,15 @@ Route::get("/attributes/values/filter", [AttributeController::class, 'filterAttr
 Route::post("/attributes/create", [AttributeController::class, 'createAttributes']);
 
 Route::get("/filters/search", [AttributeController::class, 'searchFilters']);
+Route::get("/filterType/search", [AttributeController::class, 'searchFilterType']);
+
+
+
+Route::post("/filterType/create", [AttributeController::class, 'createAttributeFilter']);
+Route::post("/filterType/update", [AttributeController::class, 'updateAttributeFilter']);
+Route::post("/filterType/remove", [AttributeController::class, 'removeAttributeFilter']);
+
+
 
 Route::post("/order/create", [OrderController::class, 'create']);
 Route::get("/orders/get", [OrderController::class, 'getOrders']);

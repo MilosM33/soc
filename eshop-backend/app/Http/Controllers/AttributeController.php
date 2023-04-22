@@ -172,9 +172,50 @@ class AttributeController extends Controller
 	public function searchFilters(Request $request)
 	{
 		$attributes = AttributeFilter::whereHas('attributeType', function ($query) use ($request) {
-			$query->where('name', 'like', '%' . $request->query('query') . '%');
+			$query->where('name', 'like', '%' . $request->input('attribute_type') . '%')->where("filter_type", "like", "%" . $request->input("filter_type") . "%");
 		})->with('attributeType')->paginate($request->show, ['*'], 'page', $request->page);
 
 		return response()->json($attributes);
+	}
+
+
+	public function searchFilterType(Request $request)
+	{
+		$filterType = $request->input("filterType");
+		$attributes = AttributeFilter::select("filter_type")->distinct()->where("filter_type", "like", "%" . $filterType . "%")->get();
+
+		return response()->json($attributes);
+	}
+
+
+	public function createAttributeFilter(Request $request)
+	{
+		AttributeFilter::create([
+			"attribute_type_id" => $request->input("attribute_type_id"),
+			"filter_type" => $request->input("filter_type")
+		]);
+
+		return response()->json([
+			"status" => "Successfull"
+		]);
+	}
+	public function updateAttributeFilter(Request $request)
+	{
+		AttributeFilter::where("id", $request->input("id"))->update([
+			"attribute_type_id" => $request->input("attribute_type_id"),
+			"filter_type" => $request->input("filter_type"),
+		]);
+
+		return response()->json([
+			"status" => "Successfull"
+		]);
+	}
+	public function removeAttributeFilter(Request $request)
+	{
+		AttributeFilter::where("id", $request->input("id"))->delete();
+
+		return response()->json([
+			"status" => "Successfull"
+		]);
 	}
 }

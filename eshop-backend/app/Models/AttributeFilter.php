@@ -11,6 +11,10 @@ class AttributeFilter extends Model
 	protected $table = 'attribute_filters';
 	public $timestamps = false;
 
+	public $fillable = [
+		"attribute_type_id",
+		"filter_type"
+	];
 
 	public function attributeType()
 	{

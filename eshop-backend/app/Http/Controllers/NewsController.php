@@ -25,13 +25,15 @@ class NewsController extends Controller
 	}
 	public function store(Request $request)
 	{
+
+
+
 		News::create([
 			"author" =>  Auth::user()->name,
 			"image" => $request->input("thumbnailUrl"),
 			"title" => $request->input("title"),
 			"short_text" => $request->input("short_text"),
-			"content" => "test"
-
+			"content" => $request->input("content"),
 
 		]);
 
@@ -43,6 +45,28 @@ class NewsController extends Controller
 	}
 	public function update(Request $request)
 	{
+
+		$news = News::where("id", $request->input("id"));
+
+		$news->update([
+			"author" =>  Auth::user()->name,
+			"title" => $request->input("title"),
+			"short_text" => $request->input("short_text"),
+			"content" => $request->input("content"),
+
+		]);
+
+		if ($request->input("thumbnailUrl")) {
+			$news->update([
+				"image" => $request->input("thumbnailUrl"),
+			]);
+		}
+
+		return response()->json(
+			[
+				"status" => "Success"
+			]
+		);
 	}
 
 	public function remove(Request $request)

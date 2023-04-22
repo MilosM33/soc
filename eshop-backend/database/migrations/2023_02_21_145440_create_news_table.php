@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('author');
             $table->string('image');
             $table->string('short_text');
-            $table->text('content');
+            $table->longText('content');
             $table->timestamps();
         });
     }

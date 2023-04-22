@@ -260,6 +260,8 @@ class OrderController extends Controller
 		$invoiceDetails = InvoiceDetails::where('order_id', $order_id)->first();
 		$email = $user->email ?? $invoiceDetails->email;
 		$customerName = $user->name ?? $invoiceDetails->full_name;
+
+		
 		if ($status == 'processing') {
 			Mail::to($email)->send(new OrderProcessing($customerName, $order));
 		} else if ($status == 'shipped') {

@@ -21,7 +21,6 @@ export default function AdminProducts() {
 		title: "",
 		description: "",
 		slug: "",
-		is_active: "",
 		similar_products: "",
 		page: 1,
 		show: 10,
@@ -307,32 +306,13 @@ export default function AdminProducts() {
 							)}
 						</div>
 						<label htmlFor="">Variants</label>
-						<div>
-							<Button
-								variant="primary"
-								onClick={() => {
-									setSelectedRow({
-										...selectedRow,
-										variants: [
-											...selectedRow.variants,
-											{
-												name: "New variant",
-												images: [],
-												attributes: [],
-												price: 0,
-											},
-										],
-									});
-								}}
-							>
-								Add variant
-							</Button>
-						</div>
+
 						{selectedRow.variants.map((variant: any) => (
 							<div className="my-5">
 								<div className="flex gap-5">
 									<TextInput
 										value={variant.name}
+										key={variant.id}
 										onChange={(e) => {
 											setSelectedRow({
 												...selectedRow,
@@ -348,6 +328,7 @@ export default function AdminProducts() {
 									<div>
 										<TextInput
 											placeholder="Price"
+											key={variant.id}
 											value={variant.price}
 											onChange={(e) => {
 												setSelectedRow({
@@ -534,7 +515,32 @@ export default function AdminProducts() {
 								</div>
 							</div>
 						))}
-
+						<div>
+							<Button
+								variant="primary"
+								onClick={() => {
+									Product.createVariant({
+										productId: selectedRow.id,
+									}).then((res) => {
+										setSelectedRow({
+											...selectedRow,
+											variants: [
+												...selectedRow.variants,
+												{
+													id: res.data.id,
+													name: "New variant",
+													images: [],
+													attributes: [],
+													price: 0,
+												},
+											],
+										});
+									});
+								}}
+							>
+								Add variant
+							</Button>
+						</div>
 						<div className="flex justify-between">
 							<Button variant="primary" onClick={() => onEdit(selectedRow)}>
 								Update
