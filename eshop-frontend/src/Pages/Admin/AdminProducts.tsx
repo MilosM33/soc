@@ -280,6 +280,8 @@ export default function AdminProducts() {
 									...selectedRow,
 									attributes: [...selectedRow.attributes, value],
 								});
+
+								
 							}}
 						></MultiSearchInput>
 						<div className="w-64">
@@ -295,6 +297,7 @@ export default function AdminProducts() {
 													),
 												});
 
+												
 												onSearch(search);
 											}}
 										>

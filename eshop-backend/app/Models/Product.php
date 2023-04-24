@@ -116,7 +116,7 @@ class Product extends Model
 
 						if (!in_array($key, $ignoreParams) && $key != $value) {
 
-							$attributeType = AttributeType::where("name", $key)->first();
+							$attributeType = AttributeType::where("name", str_replace("_", " ", $key))->first();
 							$attributeValue = AttributeValue::where("value", $value)->first();
 
 							$attribute = Attribute::where("attribute_type_id", $attributeType["id"])->where("attribute_value_id", $attributeValue["id"])->first();
@@ -153,7 +153,7 @@ class Product extends Model
 
 						if (!in_array($key, $ignoreParams) && $key != $value) {
 
-							$attributeType = AttributeType::where("name", substr($key, 7))->first();
+							$attributeType = AttributeType::where("name", str_replace("_", " ", $key))->first();
 							$attributeValue = AttributeValue::where("value", $value)->first();
 
 							$attribute = Attribute::where("attribute_type_id", $attributeType["id"])->where("attribute_value_id", $attributeValue["id"])->first();

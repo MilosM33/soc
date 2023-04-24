@@ -139,7 +139,7 @@ export default function ProductListing(props: IProductListing) {
 				<Link to={PRODUCT_URL}>
 					<h3 className="text-primary text-xl">{product.title}</h3>
 				</Link>
-				<h4 className="text-primary font-medium text-xl flex-1 flex-shrink-0">
+				<h4 className="text-primary font-medium text-xl">
 					{product.selectedVariant.price} €
 				</h4>
 			</section>
