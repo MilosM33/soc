@@ -53,6 +53,8 @@ class NewsController extends Controller
 			"title" => $request->input("title"),
 			"short_text" => $request->input("short_text"),
 			"content" => $request->input("content"),
+			"created_at" => new \DateTime(),
+
 
 		]);
 

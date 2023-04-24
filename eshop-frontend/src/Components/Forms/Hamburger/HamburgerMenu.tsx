@@ -66,7 +66,6 @@ export default function HamburgerMenu() {
 						>
 							<AiOutlineShoppingCart></AiOutlineShoppingCart>
 						</IconButton>
-						<UserInfo></UserInfo>
 					</div>
 				</div>
 

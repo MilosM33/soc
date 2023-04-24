@@ -124,6 +124,7 @@ class ProductController extends Controller
 		if ($products->count() == 0) {
 			return response()->json([
 				'filters' => [],
+				'variantFilters' => [],
 				'products' => [],
 				'status' => 'No products found'
 			], 200);
@@ -148,7 +149,7 @@ class ProductController extends Controller
         WHERE products.id IN ('" . implode("','", $productIds->toArray()) . "')");
 
 
-		/* $variantFilters = DB::select("SELECT DISTINCT attribute_type.*,
+		$variantFilters = DB::select("SELECT DISTINCT attribute_type.*,
         attribute_value.*,
         attribute_filters.filter_type
         
@@ -162,15 +163,22 @@ class ProductController extends Controller
         WHERE products.id IN ('" . implode("','", $productIds->toArray()) . "')");
 
 
-		$filters = array_merge($filters, $variantFilters); */
+
 
 
 		$filters = collect($filters)->groupBy('name');
 		$filters = FilterResource::collection($filters)->toArray($filters);
 		$formatedProducts = ListingResource::collection($products);
+
+		$variantFilters = collect($variantFilters)->groupBy('name');
+		$variantFilters = FilterResource::collection($variantFilters)->toArray($variantFilters);
+
+
+
 		return response()->json(
 			[
 				'filters' => array_values($filters),
+				'variantFilters' => array_values($variantFilters),
 				'products' => array(
 					'data' => ListingResource::collection($formatedProducts),
 					'meta' => [

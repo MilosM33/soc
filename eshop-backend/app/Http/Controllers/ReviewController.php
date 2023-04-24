@@ -10,6 +10,7 @@ class ReviewController extends Controller
 {
 	public function store(Request $request)
 	{
+		
 		$request->validate([
 			'rating' => 'required|integer|min:1|max:5',
 			'comment' => 'required|string',
@@ -25,7 +26,8 @@ class ReviewController extends Controller
 			'rating' => $request->rating,
 			'comment' => $request->comment,
 			'product_variant_id' => $request->variantId,
-			'user_id' => $request->user()->id
+			'user_id' => $request->user()->id,
+			"is_anonymous" => $request->input("user")["is_anonymous"] ? 1 : 0
 
 		]);
 
@@ -47,6 +49,7 @@ class ReviewController extends Controller
 		$review->update([
 			'rating' => $request->rating,
 			'comment' => $request->comment,
+			"is_anonymous" => $request->input("user")["is_anonymous"] ? 1 : 0,
 			'created_at' => now()
 		]);
 		$review->load('user');

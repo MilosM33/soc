@@ -29,7 +29,7 @@ export default function Header() {
 					<Hamburger OnClick={() => dispatch(setHamburger(true))}></Hamburger>
 					<HamburgerMenu></HamburgerMenu>
 				</section>
-				<nav className="flex-1">
+				<nav className="flex-1 self-center md:self-auto">
 					<Link to="/">
 						<h1 className="font-bold text-center text-2xl">
 							EVERYDAYESSENTIALS

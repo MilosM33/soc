@@ -26,9 +26,15 @@ export default function Filters({
 
 	useEffect(() => {
 		const valuesFromApi: any = { ...initialValues };
-		filters.forEach((filter: any) => {
+
+		filters.filters.forEach((filter: any) => {
 			if (filter.type === "select") {
 				valuesFromApi[filter.name] = filter.name;
+			}
+		});
+		filters.variantFilters.forEach((filter: any) => {
+			if (filter.type === "select") {
+				valuesFromApi["variant" + filter.name] = filter.name;
 			}
 		});
 		setInitialValues(valuesFromApi);
@@ -50,7 +56,10 @@ export default function Filters({
 				const request = { ...values };
 
 				Object.keys(request).forEach((key) => {
+					console.log(key, request[key]);
 					if (request[key] === key) {
+						delete request[key];
+					} else if ("variant" + request[key] === key) {
 						delete request[key];
 					}
 				});
@@ -81,8 +90,8 @@ export default function Filters({
 							onBlur={handleBlur}
 						></TextInput>
 					</li>
-					{filters.length != null &&
-						filters.map((filter: any) => {
+					{filters.filters.length != null &&
+						filters.filters.map((filter: any) => {
 							if (filter.type === "select") {
 								return (
 									<li>
@@ -98,6 +107,28 @@ export default function Filters({
 											id={filter.name}
 											onBlur={handleBlur}
 											selected={values[filter.name]}
+										></Select>
+									</li>
+								);
+							}
+						})}
+					{filters.variantFilters.length != null &&
+						filters.variantFilters.map((filter: any) => {
+							if (filter.type === "select") {
+								return (
+									<li>
+										<Select
+											placeholder={"Select Variant"}
+											options={[
+												filter.name,
+												...filter.values.map((value: any) => {
+													return value.value;
+												}),
+											]}
+											onChange={HHandleChange}
+											id={"variant" + filter.name}
+											onBlur={handleBlur}
+											selected={values["variant" + filter.name]}
 										></Select>
 									</li>
 								);

@@ -27,6 +27,7 @@ import VerifyAccount from "../Pages/VerifyAccount";
 import Whislist from "../Pages/Whislist";
 import AdminBlog from "../Pages/Admin/AdminBlog";
 import BlogPreview from "../Components/Blog/BlogPreview";
+import AdminStats from "../Pages/Admin/AdminStats";
 const router = createBrowserRouter([
 	{
 		path: "/",
@@ -155,6 +156,10 @@ const router = createBrowserRouter([
 		path: "admin",
 		element: <Admin />,
 		children: [
+			{
+				path: "home",
+				element: <AdminStats />,
+			},
 			{
 				path: "users",
 				element: <AdminUsers />,

@@ -80,8 +80,6 @@ export default function MyAccount() {
 	useEffect(() => {
 		User.getUserDetails().then((response) => {
 			const name = response.data.userDetails.full_name.split(" ");
-
-			console.log(response.data.userDetails.full_name.split(" "));
 			setUserDetails({
 				...response.data.userDetails,
 				firstName: name[0],

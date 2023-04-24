@@ -21,7 +21,7 @@ export default function RelatedProducts() {
       <h1 className="text-2xl text-primary uppercase my-3">Related products</h1>
       <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 space-x-3">
         {products.map((product) => (
-          <ProductListing {...product}></ProductListing>
+          <ProductListing {...product} key={product.id.toString()}></ProductListing>
         ))}
       </div>
     </section>

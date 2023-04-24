@@ -106,7 +106,7 @@ export default function AdminBlog() {
 						setCreateBlog(null);
 					}}
 				>
-					<div className="w-96 overflow-hidden">
+					<div className="overflow-hidden md:w-96">
 						<TextInput
 							placeholder="Blog title"
 							onChange={(e: any) => {
@@ -176,7 +176,7 @@ export default function AdminBlog() {
 						setSelectedRow(null);
 					}}
 				>
-					<div className="w-96  overflow-hidden">
+					<div className=" overflow-hidden md:w-96">
 						<TextInput
 							placeholder="Blog title"
 							value={selectedRow.title}

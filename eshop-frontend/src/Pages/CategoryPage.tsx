@@ -46,6 +46,8 @@ export default function CategoryPage() {
 	});
 
 	const [filters, setFilter] = useState<any>([]);
+	const [variantFilters, setvariantFilter] = useState<any>([]);
+
 	const { data, isSuccess, isFetching, isError, isLoading, refetch } = useQuery(
 		{
 			queryKey: ["products", page, { ...filterValues }],
@@ -63,6 +65,7 @@ export default function CategoryPage() {
 			},
 		}).then((res) => {
 			setFilter(res.data.filters);
+			setvariantFilter(res.data.variantFilters);
 			setTotal(res.data.products.meta.last_page);
 
 			return res.data.products;
@@ -80,8 +83,9 @@ export default function CategoryPage() {
 			});
 		}
 		if (category_slug != null && subcategory_slug == null) {
+			console.log(categories.categories);
 			const selectedCategory = categories.categories.find(
-				(category: any) => category.slug === category_slug
+				(category: any) => category.slug == category_slug
 			);
 
 			dispatch(setSelectedCategory(selectedCategory));
@@ -94,9 +98,9 @@ export default function CategoryPage() {
 
 				if (response.data.length === 0) {
 					dispatch(setSubCategoriesState("error"));
-					return;
+				} else {
+					dispatch(setSubCategoriesState("success"));
 				}
-				dispatch(setSubCategoriesState("success"));
 
 				const selectedCategory = response.data.find(
 					(subcategory: any) => subcategory.slug === subcategory_slug
@@ -149,7 +153,10 @@ export default function CategoryPage() {
 							)}
 
 							<Filters
-								filters={filters}
+								filters={{
+									filters,
+									variantFilters,
+								}}
 								OnSubmit={(values: any) => {
 									setFilterValues(values);
 								}}

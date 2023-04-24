@@ -83,7 +83,7 @@ export default function AdminFilters() {
 					title={"Create filter"}
 					onClose={() => setCreateFilters(null)}
 				>
-					<div className="w-[500px] overflow-y-scroll">
+					<div className="overflow-y-scroll md:w-[500px] ">
 						<SearchInput
 							placeholder="Attribute Type"
 							titleProperty="name"
@@ -125,7 +125,7 @@ export default function AdminFilters() {
 					title={"Edit filter"}
 					onClose={() => setSelectedRow(null)}
 				>
-					<div className="w-[500px] overflow-y-scroll">
+					<div className=" overflow-y-scroll md:w-[500px]">
 						<SearchInput
 							placeholder="Attribute Type"
 							titleProperty="name"

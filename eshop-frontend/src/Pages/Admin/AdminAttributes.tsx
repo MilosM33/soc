@@ -120,7 +120,7 @@ export default function AdminAttributes() {
 					title="Edit Attribute"
 				>
 					<div
-						className="w-[500px] overflow-y-scroll"
+						className="overflow-y-scroll md:w-[500px]"
 						style={{ maxHeight: "400px" }}
 					>
 						<MultiSearchInput
@@ -184,7 +184,7 @@ export default function AdminAttributes() {
 					title="Create Attribute"
 				>
 					<div
-						className="w-[500px] overflow-y-scroll"
+						className=" overflow-y-scroll md:w-[500px]"
 						style={{ maxHeight: "400px" }}
 					>
 						<MultiSearchInput
@@ -259,7 +259,7 @@ export default function AdminAttributes() {
 					title="Create Attribute Type"
 				>
 					<div
-						className="w-[500px] overflow-y-scroll"
+						className="overflow-y-scroll md:w-[500px]"
 						style={{ maxHeight: "400px" }}
 					>
 						<TextInput
@@ -296,7 +296,7 @@ export default function AdminAttributes() {
 					title="Create Attribute Value"
 				>
 					<div
-						className="w-[500px] overflow-y-scroll"
+						className="overflow-y-scroll md:w-[500px]"
 						style={{ maxHeight: "400px" }}
 					>
 						<TextInput
@@ -327,7 +327,7 @@ export default function AdminAttributes() {
 
 			<table>
 				<thead>
-					<tr className="space-x-3">
+					<tr className="sm:space-x-3">
 						<Button
 							onClick={() => {
 								setAttributeForm({

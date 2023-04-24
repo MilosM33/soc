@@ -23,10 +23,13 @@ export default function ReviewSection({
 }) {
 	const [sort, setSort] = useState("by rating asc");
 	const [isOpened, setIsOpened] = useState(false);
-	const [review, setReview] = useState({
+	const [review, setReview] = useState<any>({
 		rating: 0,
 		content: "",
 		is_author: true,
+		user: {
+			is_anonymous: false,
+		},
 	});
 	const [isEditing, setIsEditing] = useState(false);
 	const [editId, setEditId] = useState(0);
@@ -52,7 +55,7 @@ export default function ReviewSection({
 	}
 
 	function editReview() {
-		ReviewsApi.edit(editId, review.rating, review.content)
+		ReviewsApi.edit(editId, review.rating, review.content, review.user)
 			.then((res) => {
 				toast.success("Review created");
 				setReview({
@@ -79,7 +82,7 @@ export default function ReviewSection({
 			});
 	}
 	function createReview() {
-		ReviewsApi.create(variantId, review.rating, review.content)
+		ReviewsApi.create(variantId, review.rating, review.content, review.user)
 			.then((res) => {
 				toast.success("Review created");
 				setReview({
@@ -167,7 +170,22 @@ export default function ReviewSection({
 				/>
 				<div className="mt-20 md:mt-16">
 					<label htmlFor="">Don't show my name</label>
-					<input type="checkbox" name="" id="" />
+
+					<input
+						type="checkbox"
+						name=""
+						id=""
+						value={review?.user?.is_anonymous ?? false}
+						onChange={(e) => {
+							setReview({
+								...review,
+								user: {
+									...review.user,
+									is_anonymous: e.target.checked,
+								},
+							});
+						}}
+					/>
 				</div>
 
 				{!isEditing ? (
@@ -177,9 +195,12 @@ export default function ReviewSection({
 				)}
 			</div>
 
-			<section className="w-full my-5 md:w-1/2 mx-auto space-y-4">
+			<section
+				className="w-full my-5 md:w-1/2 mx-auto space-y-4"
+				id="blogPreview"
+			>
 				{reviews.length === 0 && (
-					<h1 className="text-center text-xl">No reviews yet</h1>
+					<h3 className="text-center text-xl">No reviews yet</h3>
 				)}
 				{filter().map((review: IProductReview, _: number) => {
 					return (
@@ -193,6 +214,9 @@ export default function ReviewSection({
 								<div>
 									<h3 className="text-primary text-lg">
 										{review.user != null && review.user.name}
+										{review.user != null &&
+											review.user.name == "Anonym" &&
+											"(Moja recenzia)"}
 										{review.user.is_author && (
 											<IconButton
 												onClick={() => {

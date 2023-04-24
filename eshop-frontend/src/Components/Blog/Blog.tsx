@@ -11,12 +11,11 @@ export default function Blog() {
 			page: 1,
 		}).then((res) => {
 			setBlogPosts(res.data);
-			console.log(res.data);
 		});
 	}, []);
 
 	return (
-		<div className="container mx-auto">
+		<div className="container mx-auto px-4 md:px-0">
 			<h1 className="text-2xl text-secondary my-3">Novinky</h1>
 			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
 				{blogPosts &&

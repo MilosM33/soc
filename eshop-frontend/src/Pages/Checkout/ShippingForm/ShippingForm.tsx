@@ -56,8 +56,13 @@ export default function ShippingForm(props: ShippingFormProps) {
 	useEffect(() => {
 		if (user.isAuth) {
 			User.getUserDetails().then((res) => {
+				const name = res.data.userDetails.full_name.split(" ");
 				setValues({
 					...res.data.userDetails,
+					firstName: name[0],
+					lastName: name[1],
+					zip: res.data.userDetails.zip_code,
+					deliveryMethod: res.data.userDetails.delivery_method,
 					...selector,
 				});
 			});

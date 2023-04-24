@@ -103,7 +103,7 @@ export default function AdminProducts() {
 					onClose={() => setSelectedRow(null)}
 				>
 					<div
-						className="w-[500px] overflow-y-scroll"
+						className=" overflow-y-scroll md:w-[500px]"
 						style={{ maxHeight: "400px" }}
 					>
 						<TextInput
@@ -562,7 +562,7 @@ export default function AdminProducts() {
 					onClose={() => setCreateProduct(null)}
 				>
 					<div
-						className="w-[500px] overflow-y-scroll"
+						className="overflow-y-scroll md:w-[500px] "
 						style={{ maxHeight: "400px" }}
 					>
 						<TextInput

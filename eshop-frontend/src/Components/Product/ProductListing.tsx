@@ -30,7 +30,6 @@ export default function ProductListing(props: IProductListing) {
   const location = useLocation();
   const params = useParams();
 
-  console.log(params)
   let path = "";
 
   if (location.pathname !== "/") {

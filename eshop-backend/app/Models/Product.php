@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
+use Illuminate\Support\Facades\Log;
+
 class Product extends Model
 {
 	use HasFactory;
@@ -86,49 +88,86 @@ class Product extends Model
 			}
 		});
 		$params = array_diff(array_keys(request()->input()), $ignoreParams);
+
+
+
 		if (count($params) > 0) {
-			$temp = $temp->WhereHas('attributes', function ($query) use ($ignoreParams) {
-
-				$ids = [];
-				foreach (request()->input() as $key => $value) {
+			$productAttributes = 0;
+			foreach ($params as $key => $value) {
 
 
-					if (!in_array($key, $ignoreParams) && $key != $value) {
-
-						$attributeType = AttributeType::where("name", $key)->first();
-						$attributeValue = AttributeValue::where("value", $value)->first();
-
-						$attribute = Attribute::where("attribute_type_id", $attributeType["id"])->where("attribute_value_id", $attributeValue["id"])->first();
-
-
-						$ids[] = $attribute["id"];
-					}
+				$property = substr($value, 0, 7);
+				if ($property != "variant") {
+					$productAttributes += 1;
 				}
+			}
 
 
-				$query->whereIn('attribute_id', $ids);
-			});
-			$temp = $temp->orWhereHas('variants.attributes', function ($query) use ($ignoreParams) {
+			if ($productAttributes > 0) {
+				$temp = $temp->whereHas('attributes', function ($query) use ($ignoreParams) {
 
-				$ids = [];
-				foreach (request()->input() as $key => $value) {
+					$ids = [];
+					foreach (request()->input() as $key => $value) {
 
-
-					if (!in_array($key, $ignoreParams) && $key != $value) {
-
-						$attributeType = AttributeType::where("name", $key)->first();
-						$attributeValue = AttributeValue::where("value", $value)->first();
-
-						$attribute = Attribute::where("attribute_type_id", $attributeType["id"])->where("attribute_value_id", $attributeValue["id"])->first();
+						if (substr($key, 0, 7) == "variant") {
+							continue;
+						}
 
 
-						$ids[] = $attribute["id"];
+						if (!in_array($key, $ignoreParams) && $key != $value) {
+
+							$attributeType = AttributeType::where("name", $key)->first();
+							$attributeValue = AttributeValue::where("value", $value)->first();
+
+							$attribute = Attribute::where("attribute_type_id", $attributeType["id"])->where("attribute_value_id", $attributeValue["id"])->first();
+
+
+
+							$ids[] = $attribute["id"];
+						}
 					}
+
+
+					if (array_count_values($ids) > 0) {
+						$query->whereIn('attribute_id', $ids);
+					}
+				});
+			}
+			$variantAtrributes = 0;
+			foreach (request()->input() as $key => $value) {
+
+				if (substr($key, 0, 7) == "variant") {
+					$variantAtrributes += 1;
 				}
+			}
+
+			if ($variantAtrributes > 0) {
+				$temp = $temp->whereHas('variants.attributes', function ($query) use ($ignoreParams) {
+
+					$ids = [];
+					foreach (request()->input() as $key => $value) {
+
+						if (substr($key, 0, 7) != "variant") {
+							continue;
+						}
+
+						if (!in_array($key, $ignoreParams) && $key != $value) {
+
+							$attributeType = AttributeType::where("name", substr($key, 7))->first();
+							$attributeValue = AttributeValue::where("value", $value)->first();
+
+							$attribute = Attribute::where("attribute_type_id", $attributeType["id"])->where("attribute_value_id", $attributeValue["id"])->first();
 
 
-				$query->whereIn('attribute_id', $ids);
-			});
+							$ids[] = $attribute["id"];
+						}
+					}
+
+					if (array_count_values($ids) > 0) {
+						$query->whereIn('attribute_id', $ids);
+					}
+				});
+			}
 		}
 
 
