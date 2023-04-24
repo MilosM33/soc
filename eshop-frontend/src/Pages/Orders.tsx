@@ -43,7 +43,7 @@ export default function Orders() {
             </h1>
             <p className="text-gray-400">Thank you for your order.</p>
             <a
-              href={`http://everydayessentials.tech/:8000/api/invoice/${params.orderNumber}`}
+              href={`http://everydayessentials.tech:8000/api/invoice/${params.orderNumber}`}
               target="_blank"
               rel="noreferrer"
               className="text-red-400 underline "
