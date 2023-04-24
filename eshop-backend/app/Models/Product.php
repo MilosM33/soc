@@ -154,7 +154,7 @@ class Product extends Model
 						if (!in_array($key, $ignoreParams) && $key != $value) {
 							$formatedKey = str_replace("_", " ", $key);
 
-							$formatedKey = substr($formatedKey, 0, 7);
+							$formatedKey = substr($formatedKey, 7);
 							$attributeType = AttributeType::where("name", $formatedKey)->first();
 							$attributeValue = AttributeValue::where("value", $value)->first();
 
