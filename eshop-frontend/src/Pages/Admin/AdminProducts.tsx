@@ -776,7 +776,7 @@ export default function AdminProducts() {
 								variant="primary"
 								onClick={() => {
 									Product.createVariant({
-										productId: selectedRow.id,
+										productId: createProduct.id,
 									}).then((res) => {
 										setCreateProduct({
 											...createProduct,
