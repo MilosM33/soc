@@ -70,7 +70,11 @@ export default function Filters({
 	return (
 		<section>
 			<h1 className="text-2xl">Filters</h1>
-			<form action="" onSubmit={handleSubmit}>
+			<form
+				action=""
+				onSubmit={handleSubmit}
+				className="max-h-[400px] overflow-y-auto"
+			>
 				<ul>
 					<li>
 						<TextInput

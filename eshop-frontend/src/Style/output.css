@@ -1026,6 +1026,10 @@ video {
   max-height: 24rem;
 }
 
+.max-h-\[400px\]{
+  max-height: 400px;
+}
+
 .min-h-screen{
   min-height: 100vh;
 }
@@ -1114,6 +1118,10 @@ video {
 
 .flex-1{
   flex: 1 1 0%;
+}
+
+.flex-shrink-0{
+  flex-shrink: 0;
 }
 
 .grow{
