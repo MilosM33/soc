@@ -775,17 +775,22 @@ export default function AdminProducts() {
 							<Button
 								variant="primary"
 								onClick={() => {
-									setCreateProduct({
-										...createProduct,
-										variants: [
-											...(createProduct.variants ?? []),
-											{
-												name: "New variant",
-												images: [],
-												attributes: [],
-												price: 0,
-											},
-										],
+									Product.createVariant({
+										productId: selectedRow.id,
+									}).then((res) => {
+										setCreateProduct({
+											...createProduct,
+											variants: [
+												...createProduct.variants,
+												{
+													id: res.data.id,
+													name: "New variant",
+													images: [],
+													attributes: [],
+													price: 0,
+												},
+											],
+										});
 									});
 								}}
 							>
