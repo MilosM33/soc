@@ -86,17 +86,17 @@ export default function MainPage() {
 				<section className="flex flex-col gap-2 justify-center md:flex-row md:gap-4">
 					<div className="bg-red-light p-4 py-6 rounded-md">
 						<h3 className="text-xl text-red-dark flex justify-center items-center">
-							<BsTruck className="mx-2"></BsTruck> Doprava v rámci SR
+							<BsTruck className="mx-2"></BsTruck> Transport within the Slovak Republic
 						</h3>
 					</div>
 					<div className="bg-green-light p-4 py-6  rounded-md">
 						<h3 className="text-xl text-green-dark flex justify-center items-center">
-							<FaLeaf className="mx-2"></FaLeaf> Ekologické produkty
+							<FaLeaf className="mx-2"></FaLeaf> Ecological products
 						</h3>
 					</div>
 					<div className="bg-yellow-light p-4 py-6  rounded-md">
 						<h3 className="text-xl text-yellow-dark flex justify-center items-center">
-							<BsSpeedometer className="mx-2"></BsSpeedometer> Rýchla doprava
+							<BsSpeedometer className="mx-2"></BsSpeedometer> Fast shipping
 						</h3>
 					</div>
 				</section>

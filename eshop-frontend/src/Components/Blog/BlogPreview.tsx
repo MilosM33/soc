@@ -26,10 +26,10 @@ export default function BlogPreview() {
 							{blog?.title || <Skeleton />}
 						</h1>
 						<div className="text-sm text-gray-400 my-2">
-							Autor članku: {blog?.author || <Skeleton />}
+							Author : {blog?.author || <Skeleton />}
 						</div>
 						<div className="text-sm text-gray-400 my-2">
-							Naposledy upravene:{" "}
+							Updated at:{" "}
 							{blog?.created_at ? (
 								new Date(blog?.created_at).toLocaleString("sk-sk")
 							) : (
