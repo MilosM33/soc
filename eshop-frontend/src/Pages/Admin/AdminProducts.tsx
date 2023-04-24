@@ -379,7 +379,7 @@ export default function AdminProducts() {
 											<img
 												src={image.path}
 												alt=""
-												className="w-32 aspect-square"
+												className="w-32 h-32 aspect-square"
 											/>
 
 											<IconButton
@@ -871,7 +871,7 @@ export default function AdminProducts() {
 											<img
 												src={image.path}
 												alt=""
-												className="w-32 aspect-square"
+												className="w-32 h-32 aspect-square"
 											/>
 
 											<IconButton
