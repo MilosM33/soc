@@ -376,7 +376,11 @@ export default function AdminProducts() {
 								<div className="flex">
 									{variant.images.map((image: any) => (
 										<div className="w-32 relative" key={image.id}>
-											<img src={image.path} alt="" className="w-32" />
+											<img
+												src={image.path}
+												alt=""
+												className="w-32 aspect-square"
+											/>
 
 											<IconButton
 												onClick={() => {
@@ -864,7 +868,11 @@ export default function AdminProducts() {
 								<div className="flex">
 									{variant.images.map((image: any) => (
 										<div className="w-32 relative" key={image.id}>
-											<img src={image.path} alt="" className="w-32" />
+											<img
+												src={image.path}
+												alt=""
+												className="w-32 aspect-square"
+											/>
 
 											<IconButton
 												onClick={() => {
