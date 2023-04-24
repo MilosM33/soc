@@ -152,8 +152,10 @@ class Product extends Model
 						}
 
 						if (!in_array($key, $ignoreParams) && $key != $value) {
+							$formatedKey = str_replace("_", " ", $key);
 
-							$attributeType = AttributeType::where("name", str_replace("_", " ", $key))->first();
+							$formatedKey = substr($formatedKey, 0, 7);
+							$attributeType = AttributeType::where("name", $formatedKey)->first();
 							$attributeValue = AttributeValue::where("value", $value)->first();
 
 							$attribute = Attribute::where("attribute_type_id", $attributeType["id"])->where("attribute_value_id", $attributeValue["id"])->first();
